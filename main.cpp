@@ -9,18 +9,21 @@
 
 #include <iostream>
 #include <string>
-#include "PlayerCharacter.hpp"
-#include "Bard.hpp"
-#include "Rogue.hpp"
-#include "Paladin.hpp"
-#include "Sorcerer.hpp"
+
+// #include "PlayerCharacter.hpp"
+#include "./Avatar/Characters/PlayerCharacter.hpp"
+#include "./Avatar/Characters/AirBender.hpp"
+#include "./Avatar/Characters/EarthBender.hpp"
+#include "./Avatar/Characters/FireBender.hpp"
+#include "./Avatar/Characters/WaterBender.hpp"
+
 using namespace std;
 
 int main()
 {
     string characterName;
     int characterRace;
-    int characterProfession;
+    int characterBendingStyle;
 
     //  --- Get character name
     cout << "Enter a name for your character: " << endl;
@@ -29,24 +32,24 @@ int main()
     cout << "Enter a race for your character (0 = Human, 1 = Fishman, 2 = Giant, 3 = Dwarf): ";
     cin >> characterRace;
 
-    // --- Get character profession ---
-    cout << "Enter a profession (0 = Bard, 1 = Rogue, 2 = Paladin, 3 = Sorcerer): ";
-    cin >> characterProfession;
+    // --- Get character bending style ---
+    cout << "Enter a bending style (0 = Air, 1 = Earth, 2 = Fire, 3 = Water): ";
+    cin >> characterBendingStyle;
 
-    // Validate profession input
-    while (characterProfession < 0 || characterProfession > 3) {
-        cout << "Invalid! Enter 0 = Bard, 1 = Rogue, 2 = Paladin, 3 = Sorcerer: ";
-        cin >> characterProfession;
+    // Validate bending style input
+    while (characterBendingStyle < 0 || characterBendingStyle > 3) {
+        cout << "Invalid! Enter 0 = Air, 1 = Earth, 2 = Fire, 3 = Water: ";
+        cin >> characterBendingStyle;
     }
 
     // --- Create character (runtime polymorphism) ---
     PlayerCharacter* player = nullptr;
 
-    switch (characterProfession) {
-        case 0: player = new Bard(characterName, characterRace);     break;
-        case 1: player = new Rogue(characterName, characterRace);    break;
-        case 2: player = new Paladin(characterName, characterRace);  break;
-        case 3: player = new Sorcerer(characterName, characterRace); break;
+    switch (characterBendingStyle) {
+        case 0: player = new AirBender(characterName, characterRace);     break;
+        case 1: player = new EarthBender(characterName, characterRace);    break;
+        case 2: player = new FireBender(characterName, characterRace);  break;
+        case 3: player = new WaterBender(characterName, characterRace); break;
     }
 
     // --- Display stats and greet ---

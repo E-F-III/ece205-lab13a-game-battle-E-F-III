@@ -11,7 +11,7 @@
 #ifndef BENDING_SYSTEM_HPP
 #define BENDING_SYSTEM_HPP
 
-#include "PlayerCharacter.hpp"
+#include "../Characters/PlayerCharacter.hpp"
 
 /// BendingSystem: manages bending abilities for different character types
 class BendingSystem {

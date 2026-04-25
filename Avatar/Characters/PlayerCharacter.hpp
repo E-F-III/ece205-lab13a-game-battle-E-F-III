@@ -26,15 +26,14 @@ class PlayerCharacter : public GameCharacter {
     int defense;
     int strength;
 
-    enum Race {
-      human = 0,
-      fishman,
-      giant,
-      dwarf
+    enum BendingStyle {
+      air,
+      earth,
+      fire,
+      water
     };
 
-    ///race type is Race from enum
-    Race race;
+    BendingStyle bendingStyle;
 
   public:
 
@@ -51,14 +50,14 @@ class PlayerCharacter : public GameCharacter {
     int getAgility();
     int getDefense();
     int getStrength();
-    Race getRace();
+    BendingStyle getBendingStyle();
 
     ///setters
     void setHealth(int& newHealth);
     void setAgility(int& newAgility);
     void setDefense(int& newDefense);
     void setStrength(int& newStrength);
-    void setRace(int& newRace);
+    void setBendingStyle(int& newBendingStyle);
 
     ///print all stats to match prompt
     void printStats();

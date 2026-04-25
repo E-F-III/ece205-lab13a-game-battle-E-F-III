@@ -36,7 +36,7 @@ int PlayerCharacter::rollDice(int lower, int upper) {
 /// takes in address of name from user and int corresponding to race
 /// inherited from GameCharacter, note only the setName() member is used, 
 // (since no race member) 
-PlayerCharacter::PlayerCharacter(string& characterName, int& raceCode) {
+PlayerCharacter::PlayerCharacter(string& characterName, int& bendingStyleCode) {
   setName(characterName);
 
   /// health automatically set to 100
@@ -47,8 +47,8 @@ PlayerCharacter::PlayerCharacter(string& characterName, int& raceCode) {
   defense = rollDice(0, 10);
   strength = rollDice(0, 10);
 
-  /// take race from user and set race
-  setRace(raceCode);
+  /// take bending style from user and set it using setBendingStyle() method
+  setBendingStyle(bendingStyleCode);
 
 }
 
@@ -65,9 +65,14 @@ int PlayerCharacter::getDefense() {
   return defense;
 }
 
-/// note the type PlayerCharacter::Race
-PlayerCharacter::Race PlayerCharacter::getRace() {
-    return race;
+int PlayerCharacter::getStrength() {
+  return strength;
+}
+
+/// note the type PlayerCharacter::bendingStyle
+
+PlayerCharacter::BendingStyle PlayerCharacter::getBendingStyle() {
+    return bendingStyle;
 }
 
 ///setters
@@ -83,30 +88,34 @@ void PlayerCharacter::setDefense(int& newDefense) {
   defense = newDefense;
 }
 
-void PlayerCharacter::setRace(int& newRace) {
-    /// loops, keep asking for value for race until valid {0, 1, 2, 3}
-  while (newRace < 0 || newRace > 3) {
+void PlayerCharacter::setStrength(int& newStrength) {
+  strength = newStrength;
+}
+
+void PlayerCharacter::setBendingStyle(int& newBendingStyle) {
+    /// loops, keep asking for value for bending style until valid {0, 1, 2, 3}
+  while (newBendingStyle < 0 || newBendingStyle > 3) {
 
     /// prompt user if wrong -->  give them the options again
 
     cout << "Invalid value!" << endl;
-    cout << "\nEnter a race for your character (human: 0, fishman: 1, giant: 2, dwarf: 3): " << endl;
-    cin >> newRace;  /// take user input 
+    cout << "\nEnter a bending style for your character (air: 0, earth: 1, fire: 2, water: 3): " << endl;
+    cin >> newBendingStyle;  /// take user input 
   }
 
   /// switch case for the races based on the int taken in
-  switch (newRace) {
+  switch (newBendingStyle) {
     case 0:
-      race = Race::human;
+      bendingStyle = BendingStyle::air;
       break;
     case 1:
-      race = Race::fishman;
+      bendingStyle = BendingStyle::earth;
       break;
     case 2:
-      race = Race::giant;
+      bendingStyle = BendingStyle::fire;
       break;
     case 3:
-      race = Race::dwarf;
+      bendingStyle = BendingStyle::water;
       break;
   }
 }
@@ -119,11 +128,11 @@ void PlayerCharacter::printStats() {
   /// for index of array, use the enum value
   ///
   /// since order is same in array and enum
-  string raceArray[4] = {"human", "fishman", "giant", "dwarf"};
+  string bendingStyleArray[4] = {"air", "earth", "fire", "water"};
 
   cout << "----------Stats for " << name << "----------" << endl;
   cout << "Name: " << name << endl;
-  cout << "Race: " << raceArray[race] << endl; ///note use enum race value as index of array declared above
+  cout << "Bending Style: " << bendingStyleArray[bendingStyle] << endl; ///note use enum bendingStyle value as index of array declared above
   cout << "Health: " << health << endl;
   cout << "Strength: " << strength << endl;
   cout << "Agility: " << agility << endl;

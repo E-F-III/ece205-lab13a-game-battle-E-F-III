@@ -8,7 +8,9 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
+#include "./PlayerCharacter.hpp"
 #include "./AirBender.hpp"
+#include "../BendingSystem/Air_Bending.hpp"
 
 using namespace std;
 
