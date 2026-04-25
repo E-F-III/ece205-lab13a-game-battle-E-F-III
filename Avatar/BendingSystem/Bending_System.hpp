@@ -23,11 +23,8 @@ class BendingSystem {
     BendingSystem();
     virtual ~BendingSystem() = default; // Virtual destructor for proper cleanup of derived classes
     
-    /// Activate bending abilities for a given character
-    virtual void performBendingAction(PlayerCharacter& character);
-    
     /// Display available bending actions for a given character
-    virtual std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character);
+    virtual std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) = 0; // Pure virtual function to be implemented by derived classes
 };
 
 #endif

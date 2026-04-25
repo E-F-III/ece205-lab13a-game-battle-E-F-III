@@ -18,13 +18,6 @@ BendingSystem::BendingSystem() {
     // Initialize any common bending system attributes if needed
 }
 
-/// Activate bending abilities for a given character
-void BendingSystem::performBendingAction(PlayerCharacter& character) {
-    cout << "Performing bending action for " << character.getName() << "..." << endl;
-    // This function would contain logic to determine which bending action to perform based on character type
-    // For example, if character is a WaterBender, call water bending abilities
-} 
-
 /// Display available bending actions for a given character
 std::vector<std::string> BendingSystem::getAvailableBendingActions(PlayerCharacter& character) {
     cout << "Available bending actions for " << character.getName() << ":" << endl;
