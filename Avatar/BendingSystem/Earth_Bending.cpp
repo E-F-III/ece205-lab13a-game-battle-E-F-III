@@ -33,3 +33,12 @@ void EarthBending::seismicSlam(PlayerCharacter& character) {
     cout << character.getName() << " performs Seismic Slam! They slam the ground, creating a shockwave that damages and knocks back enemies." << endl;
     // Implement area damage and knockback logic here
 }
+
+std::vector<std::string> EarthBending::getAvailableBendingActions(PlayerCharacter& character) {
+    vector<std::string> actions = {"Earth Spike", "Rock Shield", "Seismic Slam"};
+    cout << "Available Earth Bending Actions for " << character.getName() << ":" << endl;
+    for (size_t i = 0; i < actions.size(); ++i) {
+        cout << i << ": " << actions[i] << endl;
+    }
+    return actions;
+}

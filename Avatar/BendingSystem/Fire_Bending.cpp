@@ -33,3 +33,12 @@ void FireBending::lightningStrike(PlayerCharacter& character) {
     cout << character.getName() << " performs Lightning Strike! They generate a bolt of lightning that strikes a single enemy with high damage." << endl;
     // Implement high damage logic here
 }
+
+std::vector<std::string> FireBending::getAvailableBendingActions(PlayerCharacter& character) {
+    vector<std::string> actions = {"Fire Blast", "Fire Breath", "Lightning Strike"};
+    cout << "Available Fire Bending Actions for " << character.getName() << ":" << endl;
+    for (size_t i = 0; i < actions.size(); ++i) {
+        cout << i << ": " << actions[i] << endl;
+    }
+    return actions;
+}

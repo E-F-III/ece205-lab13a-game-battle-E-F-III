@@ -23,6 +23,8 @@ class WaterBending : public BendingSystem {
     void waterWhip(PlayerCharacter& character);
     void iceBarrier(PlayerCharacter& character);
     
+    /// Display available water bending actions for a given character
+    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override;
 };
 
 #endif

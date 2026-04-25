@@ -11,6 +11,9 @@
 #ifndef BENDING_SYSTEM_HPP
 #define BENDING_SYSTEM_HPP
 
+#include <vector>
+#include <string>
+
 #include "../Characters/PlayerCharacter.hpp"
 
 /// BendingSystem: manages bending abilities for different character types
@@ -18,12 +21,13 @@ class BendingSystem {
     public:
     /// Constructor: initializes the bending system
     BendingSystem();
+    virtual ~BendingSystem() = default; // Virtual destructor for proper cleanup of derived classes
     
     /// Activate bending abilities for a given character
-    void performBendingAction(PlayerCharacter& character);
+    virtual void performBendingAction(PlayerCharacter& character);
     
     /// Display available bending actions for a given character
-    void getAvailableBendingActions(PlayerCharacter& character);
+    virtual std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character);
 };
 
 #endif

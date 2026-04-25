@@ -33,3 +33,12 @@ void AirBending::flight(PlayerCharacter& character) {
     cout << character.getName() << " takes to the skies with Flight! They can now move freely and avoid ground-based attacks." << endl;
     // Implement flight logic here
 }
+
+std::vector<std::string> AirBending::getAvailableBendingActions(PlayerCharacter& character) {
+    vector<std::string> actions = {"Air Slice", "Air Shield", "Flight"};
+    cout << "Available Air Bending Actions for " << character.getName() << ":" << endl;
+    for (size_t i = 0; i < actions.size(); ++i) {
+        cout << i << ": " << actions[i] << endl;
+    }
+    return actions;
+}

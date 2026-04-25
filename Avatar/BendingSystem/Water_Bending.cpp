@@ -33,3 +33,12 @@ void WaterBending::iceBarrier(PlayerCharacter& character) {
     cout << character.getName() << " creates an Ice Barrier! A solid barrier of ice forms to block incoming attacks and protect allies." << endl;
     // Implement defense logic here
 }   
+
+std::vector<std::string> WaterBending::getAvailableBendingActions(PlayerCharacter& character) {
+    vector<std::string> actions = {"Healing Waters", "Water Whip", "Ice Barrier"};
+    cout << "Available Water Bending Actions for " << character.getName() << ":" << endl;
+    for (size_t i = 0; i < actions.size(); ++i) {
+        cout << i << ": " << actions[i] << endl;
+    }
+    return actions;
+}

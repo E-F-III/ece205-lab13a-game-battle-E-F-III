@@ -7,7 +7,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
+
 #include "Bending_System.hpp"
+#include "../Characters/PlayerCharacter.hpp"
 
 using namespace std;
 
@@ -24,8 +26,9 @@ void BendingSystem::performBendingAction(PlayerCharacter& character) {
 } 
 
 /// Display available bending actions for a given character
-void BendingSystem::getAvailableBendingActions(PlayerCharacter& character) {
+std::vector<std::string> BendingSystem::getAvailableBendingActions(PlayerCharacter& character) {
     cout << "Available bending actions for " << character.getName() << ":" << endl;
     // This function would contain logic to display bending actions based on character type
     // For example, if character is an EarthBender, list earth bending abilities
+    return {}; // Placeholder return, replace with actual available actions
 }  

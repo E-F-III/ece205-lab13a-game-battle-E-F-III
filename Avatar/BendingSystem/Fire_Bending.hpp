@@ -22,6 +22,9 @@ class FireBending : public BendingSystem {
     void fireBlast(PlayerCharacter& character);
     void fireBreath(PlayerCharacter& character);
     void lightningStrike(PlayerCharacter& character);
+
+    /// Display available fire bending actions for a given character
+    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override;
 };
 
 #endif

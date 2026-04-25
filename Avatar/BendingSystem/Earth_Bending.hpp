@@ -22,6 +22,9 @@ class EarthBending : public BendingSystem {
     void earthSpike(PlayerCharacter& character);
     void rockShield(PlayerCharacter& character);
     void seismicSlam(PlayerCharacter& character);
+
+    /// Display available earth bending actions for a given character
+    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override;
 };
 
 #endif

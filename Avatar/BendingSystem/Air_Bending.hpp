@@ -22,6 +22,9 @@ public:
     void airSlice(PlayerCharacter& character);
     void airShield(PlayerCharacter& character);
     void flight(PlayerCharacter& character);
+
+    /// Display available air bending actions for a given character
+    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override;
 };
 
 #endif
