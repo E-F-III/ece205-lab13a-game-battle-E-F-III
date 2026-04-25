@@ -1,0 +1,35 @@
+###############################################################################
+###               University of Hawaii, College of Engineering
+###                          ECE 205 - Spring 2025
+###
+### Tells git which files to ignore
+###
+### @see https://git-scm.com/docs/gitignore
+###
+### @file   .gitignore
+### @author dcummi@hawaii.edu
+###############################################################################
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Ignore a hidden file for MacOS filesystems
+.DS_Store
+
+# Ignore vi swap files
+.*.swp
+
+# Ignore core dumps
+core
+
+# Executables
+*.exe
+*.out
+*.app
