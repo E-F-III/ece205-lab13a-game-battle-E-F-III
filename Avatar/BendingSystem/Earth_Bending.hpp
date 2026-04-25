@@ -10,18 +10,18 @@
 
 #ifndef EARTH_BENDING_HPP
 #define EARTH_BENDING_HPP
-#endif
 
 #include "Bending_System.hpp"
 
 /// EarthBending: manages earth bending abilities for EarthBender characters
 class EarthBending : public BendingSystem {
-public:
+    public:
     /// Constructor: initializes the earth bending system
     EarthBending();
-
+    
     void earthSpike(PlayerCharacter& character);
     void rockShield(PlayerCharacter& character);
     void seismicSlam(PlayerCharacter& character);
 };
 
+#endif

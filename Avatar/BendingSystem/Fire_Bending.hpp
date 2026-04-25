@@ -10,17 +10,18 @@
 
 #ifndef FIRE_BENDING_HPP
 #define FIRE_BENDING_HPP
-#endif
 
 #include "Bending_System.hpp"
 
 /// FireBending: manages fire bending abilities for FireBender characters
 class FireBending : public BendingSystem {
-public:
+    public:
     /// Constructor: initializes the fire bending system
     FireBending();
-
+    
     void fireBlast(PlayerCharacter& character);
     void fireBreath(PlayerCharacter& character);
     void lightningStrike(PlayerCharacter& character);
 };
+
+#endif

@@ -10,7 +10,6 @@
 
 #ifndef AIR_BENDING_HPP
 #define AIR_BENDING_HPP
-#endif
 
 #include "Bending_System.hpp"
 
@@ -24,3 +23,5 @@ public:
     void airShield(PlayerCharacter& character);
     void flight(PlayerCharacter& character);
 };
+
+#endif

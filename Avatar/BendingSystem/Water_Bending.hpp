@@ -10,18 +10,19 @@
 
 #ifndef WATER_BENDING_HPP
 #define WATER_BENDING_HPP
-#endif
 
 #include "Bending_System.hpp"
 
 /// WaterBending: manages water bending abilities for WaterBender characters
 class WaterBending : public BendingSystem {
-public:
+    public:
     /// Constructor: initializes the water bending system
     WaterBending();
     
     void healingWaters(PlayerCharacter& character);
     void waterWhip(PlayerCharacter& character);
     void iceBarrier(PlayerCharacter& character);
-
+    
 };
+
+#endif

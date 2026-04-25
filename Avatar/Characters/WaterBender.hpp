@@ -13,31 +13,20 @@
 #define WATERBENDER_HPP
 
 #include "PlayerCharacter.hpp"
-#include <string>
+#include "../BendingSystem/Water_Bending.hpp"
 
-/// WaterBender: a water manipulation profession derived from PlayerCharacter
-class WaterBender : public PlayerCharacter {
-    protected:
-    int waterManipulationLevel; ///< level of water manipulation skill
+/// WaterBender: a profession derived from PlayerCharacter that specializes in water manipulation
+class WaterBender : public PlayerCharacter, public WaterBending {
+
+    private:
+    // WaterBender-specific attributes could be added here if needed
+        WaterBending* waterBendingSystem; ///< pointer to WaterBending system for performing water bending actions
 
     public:
     /// Constructor:
-    WaterBender(std::string& characterName);
+    WaterBender(std::string& characterName, int& raceCode);
 
-    /// Getter for waterManipulationLevel
-    int getWaterManipulationLevel();
-
-    /// Setter for waterManipulationLevel
-    void setWaterManipulationLevel(int& newLevel);
-
-    /// Create a water whip to strike an enemy
-    void waterWhip();
-    /// Heal an ally using water's restorative properties
-    void healingWaters();
-    /// Create a protective water shield to reduce incoming damage
-    void waterShield();
-
-    /// User chooses which WaterBender ability to perform
+    /// use bending system to perform a water bending action
     void performAction() override;
 
     /// Print WaterBender-specific stats in addition to base stats
@@ -46,4 +35,6 @@ class WaterBender : public PlayerCharacter {
     /// WaterBender-specific greeting
     void greet() const override;
 
-};
+};  
+
+#endif

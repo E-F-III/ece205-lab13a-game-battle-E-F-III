@@ -10,19 +10,20 @@
 
 #ifndef BENDING_SYSTEM_HPP
 #define BENDING_SYSTEM_HPP
-#endif
 
 #include "PlayerCharacter.hpp"
 
 /// BendingSystem: manages bending abilities for different character types
 class BendingSystem {
-public:
+    public:
     /// Constructor: initializes the bending system
     BendingSystem();
-
+    
     /// Activate bending abilities for a given character
     void performBendingAction(PlayerCharacter& character);
-
+    
     /// Display available bending actions for a given character
     void getAvailableBendingActions(PlayerCharacter& character);
 };
+
+#endif
