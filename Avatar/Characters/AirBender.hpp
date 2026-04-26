@@ -8,10 +8,8 @@
 /////////////////////////////////////////////////////////////////////////////////
 #ifndef AIRBENDER_HPP
 #define AIRBENDER_HPP
-
 #include "PlayerCharacter.hpp"
-#include "../BendingSystem/Air_Bending.hpp"
-
+#include "../BendingSystem/Air_Bending.hpp" // CORRECT INCLUDE PATH
 /// AirBender: a profession derived from PlayerCharacter that specializes in air manipulation
 class AirBender : public PlayerCharacter {
     private:
@@ -21,10 +19,8 @@ class AirBender : public PlayerCharacter {
     public:
         /// Constructor:
         explicit AirBender(string& characterName, int& raceCode);
-
         // Destructor: Essential cleanup when using raw pointers
         ~AirBender();
-
         /// use bending system to perform an air bending action (REMOVED 'override' KEYWORD)
         void performAction(); 
         
@@ -34,5 +30,4 @@ class AirBender : public PlayerCharacter {
         /// AirBender-specific greeting
         void greet() const override;
 };
-
 #endif //AIRBENDER_HPP

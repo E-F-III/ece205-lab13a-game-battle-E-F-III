@@ -8,9 +8,8 @@
 /////////////////////////////////////////////////////////////////////////////////
 #ifndef EARTHBENDER_HPP
 #define EARTHBENDER_HPP
-
 #include "PlayerCharacter.hpp"
-#include "../BendingSystem/Earth_Bending.hpp"
+#include "../BendingSystem/Earth_Bending.hpp" // CORRECT INCLUDE PATH
 
 /// EarthBender: a profession derived from PlayerCharacter that specializes in earth manipulation
 class EarthBender : public PlayerCharacter {
@@ -21,10 +20,8 @@ class EarthBender : public PlayerCharacter {
     public:
         /// Constructor:
         explicit EarthBender(string& characterName, int& raceCode);
-
         // Destructor: Essential cleanup when using raw pointers
         ~EarthBender();
-
         /// use bending system to perform an earth bending action (REMOVED 'override' KEYWORD)
         void performAction(); 
         
@@ -34,5 +31,4 @@ class EarthBender : public PlayerCharacter {
         /// EarthBender-specific greeting
         void greet() const override;
 };
-
 #endif //EARTHBENDER_HPP
