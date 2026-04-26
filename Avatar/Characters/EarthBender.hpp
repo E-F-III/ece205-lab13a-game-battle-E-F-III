@@ -23,7 +23,7 @@ class EarthBender : public PlayerCharacter {
         // Destructor: Essential cleanup when using raw pointers
         ~EarthBender();
         /// use bending system to perform an earth bending action (REMOVED 'override' KEYWORD)
-        void performAction(); 
+    virtual void performAction(PlayerCharacter& target);
         
         /// Print EarthBender-specific stats in addition to base stats
         void printStats();
