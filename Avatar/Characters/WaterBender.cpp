@@ -5,17 +5,17 @@
 /// @file    WaterBender.cpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
 /// WaterBender is a derived class of PlayerCharacter.
-/// WaterBenders use water manipulation to fight enemies and protect allies.
 /////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
 #include "./PlayerCharacter.hpp"
 #include "./WaterBender.hpp"
 #include "../BendingSystem/Water_Bending.hpp"
+
 using namespace std;
 
 /// Constructor: initializes the water bending system
-WaterBender::WaterBender(string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
+WaterBender::WaterBender(std::string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
     // Initialize water bending system
     waterBendingSystem = new WaterBending();
 }
@@ -27,18 +27,16 @@ WaterBender::~WaterBender() {
 }
 
 /// use bending system to perform a water bending action
-void WaterBender::performAction() {
+void WaterBender::performAction(PlayerCharacter& target) {
     int choice = -1;
     // Initialize choice variable for loop validation
-    
     cout << "\nGame Master: What would you like " << name << " to do?" << endl;
     waterBendingSystem->getAvailableBendingActions(target); // Display available actions
     
     // Loop ensures the options 0-2 are selected (Validation)
-    while (choice < 0 || choice > 2) { 
-        cout << "Enter the number corresponding to your choice (0=Healing Waters, 1=Water Whip, 2=Ice Barrier): ";
-        cin >> choice; 
-        
+    while (choice < 0 || choice > 2) {
+        cout << "Enter the number corresponding to your choice (0=Healing, 1=Whip, 2=Barrier): ";
+        cin >> choice;
         if (choice < 0 || choice > 2) {
             cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl;
         }
@@ -48,15 +46,15 @@ void WaterBender::performAction() {
     switch (choice) {
         case 0:
             cout << "\n--- Action Selected: Healing Waters ---\n" << endl;
-            waterBendingSystem->healingWaters(target);   
+            waterBendingSystem->healingWaters(target);
             break;
         case 1:
             cout << "\n--- Action Selected: Water Whip ---\n" << endl;
-            waterBendingSystem->waterWhip(target);  
+            waterBendingSystem->waterWhip(target);
             break;
         case 2:
             cout << "\n--- Action Selected: Ice Barrier ---\n" << endl;
-            waterBendingSystem->iceBarrier(target);      
+            waterBendingSystem->iceBarrier(target);
             break;
     }
 }
