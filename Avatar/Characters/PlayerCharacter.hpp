@@ -59,7 +59,7 @@ class PlayerCharacter : public GameCharacter {
     void greet() const override;
     ///from lab12a instructions
     
-    virtual void performAction();
+    virtual void performAction(PlayerCharacter& target);
 
 };
 #endif //PLAYERCHARACTER_H
