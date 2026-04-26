@@ -24,7 +24,7 @@ class FireBender : public PlayerCharacter {
         // Destructor: Essential cleanup when using raw pointers
         ~FireBender();
         /// use bending system to perform a fire bending action (REMOVED 'override' KEYWORD)
-        void performAction();
+    virtual void performAction(PlayerCharacter& target);
         
         /// Print FireBender-specific stats in addition to base stats
         void printStats();
