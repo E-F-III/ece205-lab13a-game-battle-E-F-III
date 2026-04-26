@@ -27,10 +27,10 @@ class PlayerCharacter : public GameCharacter {
     };
     BendingStyle bendingStyle;
   public:
-    ///function to generate random number within range
-    int rollDice(int lower, int upper); // Function signature remains the same
+    // FIX: Declaring rollDice as static since it doesn't require an object instance.
+    static int rollDice(int lower, int upper); 
     
-    // Constructor declaration (remains unchanged)
+    /// Constructor and methods remain unchanged...
     PlayerCharacter(string& characterName, int& bendingStyleCode);
     
     // Getters (remain unchanged)
@@ -46,16 +46,11 @@ class PlayerCharacter : public GameCharacter {
     void setDefense(int newDefense);
     void setStrength(int newStrength);
     
-    // ADDED: Virtual function declaration for polymorphism
-    void performAction(); 
-    
     ///setBendingStyle remains correct because it needs to modify the incoming variable (the reference).
     void setBendingStyle(int& newBendingStyle); 
     
     ///print all stats to match prompt (remains unchanged)
     void printStats();
-
-    // ... rest remains unchanged ...
 };
 
 #endif //PLAYERCHARACTER_H

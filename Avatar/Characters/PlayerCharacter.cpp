@@ -11,7 +11,7 @@
 #include "PlayerCharacter.hpp"
 using namespace std;
 
-// Note: rollDice() uses random device and is a member function, so we call it via object methods.
+// FIX: Defined as static member function
 int PlayerCharacter::rollDice(int lower, int upper) {
   random_device rd; 
   mt19937 engine(rd()); 
@@ -58,7 +58,7 @@ void PlayerCharacter::setBendingStyle(int& newBendingStyle) {
     }
 }
 
-// ADDED IMPLEMENTATION for polymorphism fix
+// ADDED FUNCTION IMPLEMENTATION for polymorphism fix (This was the previous error)
 void PlayerCharacter::performAction() {
     cout << "No specific action available for this generic character." << endl;
 }
