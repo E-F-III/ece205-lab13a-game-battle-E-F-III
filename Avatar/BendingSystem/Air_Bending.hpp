@@ -7,24 +7,18 @@
 ///
 /// AirBender is a derived class of BendingSystem. AirBenders use air manipulation to fight enemies and protect allies.
 ///////////////////////////////////////////////////////////////////////////////
-
 #ifndef AIR_BENDING_HPP
 #define AIR_BENDING_HPP
-
 #include "Bending_System.hpp"
-
 /// AirBending: manages air bending abilities for AirBender characters
-class AirBending : public BendingSystem {
+class AirBending : public BendingSystem { // Base class is BendingSystem
 public:
     /// Constructor: initializes the air bending system
     AirBending();
-
     void airSlice(PlayerCharacter& character);
     void airShield(PlayerCharacter& character);
     void flight(PlayerCharacter& character);
-
     /// Display available air bending actions for a given character
-    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override;
+    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override; // Keep virtual and override here
 };
-
 #endif

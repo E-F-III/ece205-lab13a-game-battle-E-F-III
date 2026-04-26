@@ -1,3 +1,4 @@
+//  GNU nano 7.2                                                                                      AirBender.cpp
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
 //  Lab 13b - Game Character Class Part III (Polymorphism) - ECE 205 - Spring 2026
@@ -11,7 +12,6 @@
 #include "./PlayerCharacter.hpp"
 #include "./AirBender.hpp"
 #include "../BendingSystem/Air_Bending.hpp"
-
 using namespace std;
 
 /// Constructor: initializes the air bending system
@@ -19,38 +19,42 @@ AirBender::AirBender(std::string& characterName, int& raceCode) : PlayerCharacte
     airBendingSystem = new AirBending(); // Initialize the air bending system
 }
 
+// Destructor: Cleanup necessary because we used 'new' to allocate airBendingSystem
+AirBender::~AirBender() {
+    delete airBendingSystem; 
+}
+
+
 /// use bending system to perform an air bending action
 void AirBender::performAction() {
-    int choice;
+    // We declare choice once, and then assign values throughout the function scope.
+    int choice = 0; // Initializing choice variable here is enough.
     cout << "\nGame Master: What would you like " << name << " to do?" << endl;
-    
     airBendingSystem->getAvailableBendingActions(*this); // Display available options
-    
-    int choice = 0; // Initialize choice variable for loop validation
-    
+
     // Loop ensured the options 0-2 are selected
-    while (choice < 0 || choice > 2) { 
-        cout << "Enter the number corresponding to your choice (0=Slice, 1=Shield, 2=Flight): "; 
-        cin >> choice; 
-        
+    while (choice < 0 || choice > 2) {
+        cout << "Enter the number corresponding to your choice (0=Slice, 1=Shield, 2=Flight): ";
+        cin >> choice;
         if (choice < 0 || choice > 2) {
-            cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl; 
+            // Using endl for consistency with previous console output blocks
+            cout << "Invalid input! Please enter a number between 0 and 2." << endl; 
         }
     }
-    
+
     // Call the appropriate function in airBendingSystem based on user selection.
     switch (choice) {
         case 0:
-            cout << "\n--- Action Selected: Air Slice ---\n" << endl; 
-            airBendingSystem->airSlice(*this);   
+            cout << "\n--- Action Selected: Air Slice ---\n" << endl;
+            airBendingSystem->airSlice(*this);
             break;
         case 1:
             cout << "\n--- Action Selected: Air Shield ---\n" << endl;
-            airBendingSystem->airShield(*this);  
+            airBendingSystem->airShield(*this);
             break;
         case 2:
-            cout << "\n--- Action Selected: Flight ---\n" << endl; 
-            airBendingSystem->flight(*this);      
+            cout << "\n--- Action Selected: Flight ---\n" << endl;
+            airBendingSystem->flight(*this);
             break;
     }
 }

@@ -7,24 +7,18 @@
 ///
 /// EarthBender is a derived class of BendingSystem. EarthBenders use earth manipulation to fight enemies and protect allies.
 ///////////////////////////////////////////////////////////////////////////////
-
 #ifndef EARTH_BENDING_HPP
 #define EARTH_BENDING_HPP
-
 #include "Bending_System.hpp"
-
 /// EarthBending: manages earth bending abilities for EarthBender characters
-class EarthBending : public BendingSystem {
-    public:
+class EarthBending : public BendingSystem { // Base class is BendingSystem
+public:
     /// Constructor: initializes the earth bending system
     EarthBending();
-    
     void earthSpike(PlayerCharacter& character);
     void rockShield(PlayerCharacter& character);
     void seismicSlam(PlayerCharacter& character);
-
     /// Display available earth bending actions for a given character
-    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override;
+    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override; // Keep virtual and override here
 };
-
-#endif
+#endif 

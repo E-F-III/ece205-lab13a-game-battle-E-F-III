@@ -8,30 +8,50 @@
 
 #include <iostream>
 #include "Fire_Bending.hpp"
-
 using namespace std;
 
 /// Constructor: initializes the fire bending system
 FireBending::FireBending() {
-    // Initialize any fire bending specific attributes if needed
+    // No specific initialization required
 }
 
 // Fire Blast: a powerful blast of fire that can burn enemies
 void FireBending::fireBlast(PlayerCharacter& character) {
-    cout << character.getName() << " performs Fire Blast! A powerful blast of fire shoots towards the enemy, burning them." << endl;
-    // Implement damage logic here
+    cout << "\nFire Blast hits!" << endl;
+    
+    // Calculate damage: Medium range for fire blast
+    int damage = PlayerCharacter::rollDice(7, 12); 
+    
+    // Update health via getter/setter to ensure specific instance update
+    character.setHealth(character.getHealth() - damage); 
+    
+    cout << "Fire Blast deals " << damage << " damage to " << character.getName() << endl; 
 }
 
 // Fire Breath: the character exhales a cone of fire that can damage multiple enemies
 void FireBending::fireBreath(PlayerCharacter& character) {
-    cout << character.getName() << " performs Fire Breath! They exhale a cone of fire that can damage multiple enemies in front of them." << endl;
-    // Implement area damage logic here
+    // Area damage logic here (applied to current target for simplicity in this game)
+    cout << "\nFire Breath activates!" << endl;
+    
+    // Calculate area damage: Cone of fire deals moderate damage
+    int damage = PlayerCharacter::rollDice(6, 11); 
+    
+    character.setHealth(character.getHealth() - damage);
+    cout << "Fire Breath deals " << damage << " damage to " << character.getName() << endl; 
 }
 
 // Lightning Strike: the character generates a bolt of lightning that can strike a single enemy with high damage
 void FireBending::lightningStrike(PlayerCharacter& character) {
-    cout << character.getName() << " performs Lightning Strike! They generate a bolt of lightning that strikes a single enemy with high damage." << endl;
-    // Implement high damage logic here
+    // High damage logic here (modified to interact with passed player ref)
+    cout << "\nLightning Strike hits!" << endl;
+    
+    // Calculate damage: High range for lightning attack
+    int damage = PlayerCharacter::rollDice(12, 20); 
+    
+    // Update health via getter/setter to ensure specific instance update
+    character.setHealth(character.getHealth() - damage); 
+    
+    cout << "Lightning Strike deals " << damage << " damage to " << character.getName() << endl; 
 }
 
 std::vector<std::string> FireBending::getAvailableBendingActions(PlayerCharacter& character) {

@@ -6,9 +6,8 @@
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
 /// FireBender is a derived class of PlayerCharacter. FireBenders use fire manipulation to fight enemies and protect allies.
 /////////////////////////////////////////////////////////////////////////////////
-
-#ifndef FIREBENDER_HPP
-#define FIREBENDER_HPP
+#ifndef FIRE_BENDING_HPP
+#define FIRE_BENDING_HPP
 
 #include "PlayerCharacter.hpp"
 #include "../BendingSystem/Fire_Bending.hpp"
@@ -20,14 +19,14 @@ class FireBender : public PlayerCharacter {
         FireBending* fireBendingSystem; 
         
     public:
-        /// Constructor: initializes the object and bending system
+        /// Constructor:
         explicit FireBender(string& characterName, int& raceCode);
 
-        // Destructor: Essential for cleanup when using raw pointers allocated with 'new'.
+        // Destructor: Essential cleanup when using raw pointers
         ~FireBender();
-        
-        /// use bending system to perform a fire bending action
-        void performAction() override;
+
+        /// use bending system to perform a fire bending action (REMOVED 'override' KEYWORD)
+        void performAction();
         
         /// Print FireBender-specific stats in addition to base stats
         void printStats();

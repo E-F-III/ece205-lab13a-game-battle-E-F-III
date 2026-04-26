@@ -6,7 +6,6 @@
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
 /// EarthBender is a derived class of PlayerCharacter. EarthBenders use earth manipulation to fight enemies and protect allies.
 /////////////////////////////////////////////////////////////////////////////////
-
 #ifndef EARTHBENDER_HPP
 #define EARTHBENDER_HPP
 
@@ -20,14 +19,14 @@ class EarthBender : public PlayerCharacter {
         EarthBending* earthBendingSystem; 
         
     public:
-        /// Constructor: initializes the object and bending system
+        /// Constructor:
         explicit EarthBender(string& characterName, int& raceCode);
 
-        // Destructor: Essential for cleanup when using raw pointers allocated with 'new'.
+        // Destructor: Essential cleanup when using raw pointers
         ~EarthBender();
-        
-        /// use bending system to perform an earth bending action (overrides base class method)
-        void performAction() override;
+
+        /// use bending system to perform an earth bending action (REMOVED 'override' KEYWORD)
+        void performAction(); 
         
         /// Print EarthBender-specific stats in addition to base stats
         void printStats();
