@@ -72,7 +72,7 @@ int main()
         
         // We pass 'bob' into the action so your math affects Bob's health
         player->performAction(bob); 
-        cout << "\nyour's Remaining Health: " << player.getHealth() << endl;
+        cout << "\nyour's Remaining Health: " << player->getHealth() << endl;
         cout << "\nBob's Remaining Health: " << bob.getHealth() << endl;
 
         if (bob.getHealth() <= 0) {
