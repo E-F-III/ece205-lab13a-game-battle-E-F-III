@@ -10,7 +10,7 @@
 #ifndef WATERBENDER_HPP
 #define WATERBENDER_HPP
 #include "PlayerCharacter.hpp"
-#include "../BendingSystem/Water_Bending.hpp" // CORRECT INCLUDE PATH
+#include "Water_Bending.hpp" // CORRECT INCLUDE PATH
 #include <string>
 
 /// WaterBender: a profession derived from PlayerCharacter that specializes in water manipulation

@@ -7,9 +7,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include "./PlayerCharacter.hpp"
-#include "./AirBender.hpp"
-#include "../BendingSystem/Air_Bending.hpp"
+#include "PlayerCharacter.hpp"
+#include "AirBender.hpp"
+#include "Air_Bending.hpp"
 using namespace std;
 
 // --- Constructor and Destructor --- 

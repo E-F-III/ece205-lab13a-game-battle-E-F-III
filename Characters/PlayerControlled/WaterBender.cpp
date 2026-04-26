@@ -8,9 +8,9 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include "./PlayerCharacter.hpp"
-#include "./WaterBender.hpp"
-#include "../BendingSystem/Water_Bending.hpp"
+#include "PlayerCharacter.hpp"
+#include "WaterBender.hpp"
+#include "Water_Bending.hpp"
 
 using namespace std;
 

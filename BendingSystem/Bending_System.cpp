@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include "Bending_System.hpp"
-#include "../Characters/PlayerCharacter.hpp"
+#include "PlayerCharacter.hpp"
 using namespace std;
 
 /// Constructor: initializes the bending system

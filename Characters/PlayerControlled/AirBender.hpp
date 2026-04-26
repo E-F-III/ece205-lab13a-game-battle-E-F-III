@@ -9,7 +9,7 @@
 #ifndef AIRBENDER_HPP
 #define AIRBENDER_HPP
 #include "PlayerCharacter.hpp"
-#include "../BendingSystem/Air_Bending.hpp" // CORRECT INCLUDE PATH
+#include "Air_Bending.hpp" // CORRECT INCLUDE PATH
 #include <string>
 
 /// AirBender: a profession derived from PlayerCharacter that specializes in air manipulation

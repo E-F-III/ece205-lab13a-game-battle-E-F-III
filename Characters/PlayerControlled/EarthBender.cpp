@@ -8,9 +8,9 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include "./PlayerCharacter.hpp"
-#include "./EarthBender.hpp"
-#include "../BendingSystem/Earth_Bending.hpp"
+#include "PlayerCharacter.hpp"
+#include "EarthBender.hpp"
+#include "Earth_Bending.hpp"
 
 using namespace std;
 

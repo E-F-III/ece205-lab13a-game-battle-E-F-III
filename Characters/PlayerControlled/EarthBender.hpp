@@ -11,7 +11,7 @@
 #ifndef EARTHBENDER_HPP
 #define EARTHBENDER_HPP
 #include "PlayerCharacter.hpp"
-#include "../BendingSystem/Earth_Bending.hpp" // CORRECT INCLUDE PATH
+#include "Earth_Bending.hpp" // CORRECT INCLUDE PATH
 #include <string>
 
 /// EarthBender: a profession derived from PlayerCharacter that specializes in earth manipulation

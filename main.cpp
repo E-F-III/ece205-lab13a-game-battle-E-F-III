@@ -10,11 +10,11 @@
 #include <iostream>
 #include <string>
 
-#include "./Avatar/Characters/PlayerCharacter.hpp"
-#include "./Avatar/Characters/AirBender.hpp"
-#include "./Avatar/Characters/EarthBender.hpp"
-#include "./Avatar/Characters/FireBender.hpp"
-#include "./Avatar/Characters/WaterBender.hpp"
+#include "PlayerCharacter.hpp"
+#include "AirBender.hpp"
+#include "EarthBender.hpp"
+#include "FireBender.hpp"
+#include "WaterBender.hpp"
 
 using namespace std;
 

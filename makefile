@@ -7,25 +7,26 @@
 CXX      := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra -pedantic -g
 # Include directories: '.' for root, and specific subdirectories for headers
-INCLUDES := -I. -IAvatar/Characters -IAvatar/BendingSystem
+INCLUDES := -I. -ICharacters -IBendingSystem
 
 # Target Executable Name
 TARGET   := main
 
 # Directory Structure
 SRC_DIR  := .
-CHAR_DIR := Avatar/Characters
-BEND_DIR := Avatar/BendingSystem
+PLAYER_CONTROLLED_DIR := Characters/PlayerControlled
+GAME_CHAR_DIR := Characters
+BEND_DIR := BendingSystem
 OBJ_DIR  := obj
 
 # Source Files
 SRCS := $(SRC_DIR)/main.cpp \
-        $(CHAR_DIR)/GameCharacter.cpp \
-        $(CHAR_DIR)/PlayerCharacter.cpp \
-        $(CHAR_DIR)/AirBender.cpp \
-        $(CHAR_DIR)/EarthBender.cpp \
-        $(CHAR_DIR)/FireBender.cpp \
-        $(CHAR_DIR)/WaterBender.cpp \
+        $(GAME_CHAR_DIR)/GameCharacter.cpp \
+        $(PLAYER_CONTROLLED_DIR)/PlayerCharacter.cpp \
+        $(PLAYER_CONTROLLED_DIR)/AirBender.cpp \
+        $(PLAYER_CONTROLLED_DIR)/EarthBender.cpp \
+        $(PLAYER_CONTROLLED_DIR)/FireBender.cpp \
+        $(PLAYER_CONTROLLED_DIR)/WaterBender.cpp \
         $(BEND_DIR)/Bending_System.cpp \
         $(BEND_DIR)/Air_Bending.cpp \
         $(BEND_DIR)/Earth_Bending.cpp \

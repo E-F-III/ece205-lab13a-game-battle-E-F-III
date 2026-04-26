@@ -11,7 +11,7 @@
 #ifndef FIREBENDER_HPP
 #define FIREBENDER_HPP
 #include "PlayerCharacter.hpp"
-#include "../BendingSystem/Fire_Bending.hpp" // CORRECT INCLUDE PATH
+#include "Fire_Bending.hpp" // CORRECT INCLUDE PATH
 #include <string>
 
 /// FireBender: a profession derived from PlayerCharacter that specializes in fire manipulation

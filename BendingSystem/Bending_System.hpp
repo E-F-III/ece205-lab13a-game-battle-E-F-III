@@ -14,7 +14,7 @@
 #include <vector>
 #include <string>
 
-#include "../Characters/PlayerCharacter.hpp"
+#include "PlayerCharacter.hpp"
 
 /// BendingSystem: manages bending abilities for different character types
 class BendingSystem {

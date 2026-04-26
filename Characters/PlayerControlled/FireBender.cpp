@@ -8,9 +8,9 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include "./PlayerCharacter.hpp"
-#include "./FireBender.hpp"
-#include "../BendingSystem/Fire_Bending.hpp"
+#include "PlayerCharacter.hpp"
+#include "FireBender.hpp"
+#include "Fire_Bending.hpp"
 
 using namespace std;
 
