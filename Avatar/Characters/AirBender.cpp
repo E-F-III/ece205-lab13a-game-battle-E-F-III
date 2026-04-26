@@ -24,23 +24,35 @@ void AirBender::performAction() {
     int choice;
     cout << "\nGame Master: What would you like " << name << " to do?" << endl;
     
-    airBendingSystem->getAvailableBendingActions(*this); // Display available air bending actions
-    cout << "Enter the number corresponding to your choice: ";
-    cin >> choice;
-
-    // @Mendencan: The logic for performing the chosen air bending action would go here. For example:
-    // @Mendencan: adjust the code to use pointers to the air bending system and call the appropriate method based on the user's choice. For example:
-
-    // while (choice < 0 || choice > 2) {
-    //     cout << "Invalid! Enter 0 = Minor Illusion, 1 = Vicious Mockery, 2 = Encore: ";
-    //     cin >> choice;
-    // }
-
-    // switch (choice) {
-    //     case 0: minorIllusion();   break;
-    //     case 1: viciousMockery();  break;
-    //     case 2: encore();          break;
-    // }
+    airBendingSystem->getAvailableBendingActions(*this); // Display available options
+    
+    int choice = 0; // Initialize choice variable for loop validation
+    
+    // Loop ensured the options 0-2 are selected
+    while (choice < 0 || choice > 2) { 
+        cout << "Enter the number corresponding to your choice (0=Slice, 1=Shield, 2=Flight): "; 
+        cin >> choice; 
+        
+        if (choice < 0 || choice > 2) {
+            cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl; 
+        }
+    }
+    
+    // Call the appropriate function in airBendingSystem based on user selection.
+    switch (choice) {
+        case 0:
+            cout << "\n--- Action Selected: Air Slice ---\n" << endl; 
+            airBendingSystem->airSlice(*this);   
+            break;
+        case 1:
+            cout << "\n--- Action Selected: Air Shield ---\n" << endl;
+            airBendingSystem->airShield(*this);  
+            break;
+        case 2:
+            cout << "\n--- Action Selected: Flight ---\n" << endl; 
+            airBendingSystem->flight(*this);      
+            break;
+    }
 }
 
 /// Print AirBender-specific stats in addition to base stats
@@ -48,7 +60,7 @@ void AirBender::printStats() {
     PlayerCharacter::printStats();
     cout << "Profession: AirBender" << endl;
     cout << "------------------------------------" << endl;
-}   
+}
 
 /// AirBender-specific greeting
 void AirBender::greet() const {

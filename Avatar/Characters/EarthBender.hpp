@@ -14,25 +14,26 @@
 #include "../BendingSystem/Earth_Bending.hpp"
 
 /// EarthBender: a profession derived from PlayerCharacter that specializes in earth manipulation
-class EarthBender : public PlayerCharacter, public EarthBending {
-
+class EarthBender : public PlayerCharacter {
     private:
-    // EarthBender-specific attributes could be added here if needed
-        EarthBending* earthBendingSystem; ///< pointer to EarthBending system for performing earth bending actions
-
+        // Pointer to EarthBending system for performing earth bending actions
+        EarthBending* earthBendingSystem; 
+        
     public:
-    /// Constructor:
-    EarthBender(std::string& characterName, int& raceCode);
+        /// Constructor: initializes the object and bending system
+        explicit EarthBender(string& characterName, int& raceCode);
 
-    /// use bending system to perform an earth bending action
-    void performAction() override;
-
-    /// Print EarthBender-specific stats in addition to base stats
-    void printStats();
-
-    /// EarthBender-specific greeting
-    void greet() const override;
-
+        // Destructor: Essential for cleanup when using raw pointers allocated with 'new'.
+        ~EarthBender();
+        
+        /// use bending system to perform an earth bending action (overrides base class method)
+        void performAction() override;
+        
+        /// Print EarthBender-specific stats in addition to base stats
+        void printStats();
+        
+        /// EarthBender-specific greeting
+        void greet() const override;
 };
 
-#endif
+#endif //EARTHBENDER_HPP

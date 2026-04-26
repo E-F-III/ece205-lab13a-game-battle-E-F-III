@@ -14,25 +14,26 @@
 #include "../BendingSystem/Fire_Bending.hpp"
 
 /// FireBender: a profession derived from PlayerCharacter that specializes in fire manipulation
-class FireBender : public PlayerCharacter, public FireBending {
-    
+class FireBender : public PlayerCharacter {
     private:
-    // FireBender-specific attributes could be added here if needed
-        FireBending* fireBendingSystem; ///< pointer to FireBending system for performing fire bending actions
-
+        // Pointer to FireBending system for performing fire bending actions
+        FireBending* fireBendingSystem; 
+        
     public:
-    /// Constructor:
-    FireBender(std::string& characterName, int& raceCode);
+        /// Constructor: initializes the object and bending system
+        explicit FireBender(string& characterName, int& raceCode);
 
-    /// use bending system to perform a fire bending action
-    void performAction() override;
-
-    /// Print FireBender-specific stats in addition to base stats
-    void printStats();
-
-    /// FireBender-specific greeting
-    void greet() const override;
-
+        // Destructor: Essential for cleanup when using raw pointers allocated with 'new'.
+        ~FireBender();
+        
+        /// use bending system to perform a fire bending action
+        void performAction() override;
+        
+        /// Print FireBender-specific stats in addition to base stats
+        void printStats();
+        
+        /// FireBender-specific greeting
+        void greet() const override;
 };
 
-#endif
+#endif //FIREBENDER_HPP
