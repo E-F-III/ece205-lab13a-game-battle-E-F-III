@@ -1,67 +1,152 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  Lab 13b - Game Character Class Part III (Polymorphism) - ECE 205 - Spring 2026
+//  Lab 11a - Game Character Class Part II - ECE 205 - Spring 2025
 //
+///
 /// @file    PlayerCharacter.cpp
-/// @author  Edward Felipe III <efelipe3@hawaii.edu>
+/// @author  Steven Daniel Javier <sdjavier@hawaii.edu>
 ///////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <string>
 #include <random>
 #include "PlayerCharacter.hpp"
+
 using namespace std;
 
-// FIX: Defined as static member function
+/// generates random number btwn lower / upper limits 
 int PlayerCharacter::rollDice(int lower, int upper) {
-  random_device rd; 
-  mt19937 engine(rd()); 
+
+  random_device rd; /// non-deterministic random number 
+  ///rd: random number source providing inital randomness for different values
+  mt19937 engine(rd()); /// Mersenne Twister algorithm-based random number gen.
+  /// engine produces the random number above
+
   uniform_int_distribution<int> distribution(lower, upper); 
-  return distribution(engine);
+  /// generate integer btwn lower and upper
+
+  int result = distribution(engine);
+  /// ^generates the random number 
+
+  return result;
 }
 
-/// constructor declaration for "PlayerCharacter" (remains unchanged)
+
+/// constructor declaration for "PlayerCharacter"
+/// takes in address of name from user and int corresponding to race
+/// inherited from GameCharacter, note only the setName() member is used, 
+// (since no race member) 
 PlayerCharacter::PlayerCharacter(string& characterName, int& bendingStyleCode) {
-  setName(characterName); // Use setter methods to ensure initialization consistency
-  health = 100; // Health automatically set to 100
-  // generate random values between 5 and 20 (using a slightly higher range for better gameplay)
-  agility = rollDice(5, 20);
-  defense = rollDice(5, 20);
-  strength = rollDice(5, 20);
+  setName(characterName);
+
+  /// health automatically set to 100
+  health = 100;
+
+  ///generate random values between 0 and 10 using rollDice() for stats
+  agility = rollDice(0, 10);
+  defense = rollDice(0, 10);
+  strength = rollDice(0, 10);
+
+  /// take bending style from user and set it using setBendingStyle() method
   setBendingStyle(bendingStyleCode);
+
 }
 
-// Getters (remain unchanged)
-int PlayerCharacter::getHealth() { return health; }
-/* ... other getters remain the same ... */
+/// getters
+int PlayerCharacter::getHealth() {
+  return health;
+  }
 
-
-// Setters: These functions now accept 'int' by value instead of 'int&'
-void PlayerCharacter::setHealth(int newHealth) { 
-    health = newHealth; // Simple assignment is enough since we are passing a calculated value.
+int PlayerCharacter::getAgility() {
+  return agility;
 }
-void PlayerCharacter::setAgility(int newAgility) { agility = newAgility; }
-void PlayerCharacter::setDefense(int newDefense) { defense = newDefense; }
-void PlayerCharacter::setStrength(int newStrength) { strength = newStrength; }
 
-// setBendingStyle remains correct because it needs to modify the incoming variable (the reference).
+int PlayerCharacter::getDefense() {
+  return defense;
+}
+
+int PlayerCharacter::getStrength() {
+  return strength;
+}
+
+/// note the type PlayerCharacter::bendingStyle
+
+PlayerCharacter::BendingStyle PlayerCharacter::getBendingStyle() {
+    return bendingStyle;
+}
+
+///setters
+void PlayerCharacter::setHealth(int& newHealth) {
+  health = newHealth;
+}
+
+void PlayerCharacter::setAgility(int& newAgility) {
+  agility = newAgility;
+}
+
+void PlayerCharacter::setDefense(int& newDefense) {
+  defense = newDefense;
+}
+
+void PlayerCharacter::setStrength(int& newStrength) {
+  strength = newStrength;
+}
+
 void PlayerCharacter::setBendingStyle(int& newBendingStyle) {
-    while (newBendingStyle < 0 || newBendingStyle > 3) {
-        cout << "Invalid value!" << endl;
-        cout << "\nEnter a bending style for your character (air: 0, earth: 1, fire: 2, water: 3): " << endl;
-        cin >> newBendingStyle;  /// take user input 
-    }
-    switch (newBendingStyle) {
-        case 0: bendingStyle = BendingStyle::air; break;
-        case 1: bendingStyle = BendingStyle::earth; break;
-        case 2: bendingStyle = BendingStyle::fire; break;
-        case 3: bendingStyle = BendingStyle::water; break;
-    }
+    /// loops, keep asking for value for bending style until valid {0, 1, 2, 3}
+  while (newBendingStyle < 0 || newBendingStyle > 3) {
+
+    /// prompt user if wrong -->  give them the options again
+
+    cout << "Invalid value!" << endl;
+    cout << "\nEnter a bending style for your character (air: 0, earth: 1, fire: 2, water: 3): " << endl;
+    cin >> newBendingStyle;  /// take user input 
+  }
+
+  /// switch case for the races based on the int taken in
+  switch (newBendingStyle) {
+    case 0:
+      bendingStyle = BendingStyle::air;
+      break;
+    case 1:
+      bendingStyle = BendingStyle::earth;
+      break;
+    case 2:
+      bendingStyle = BendingStyle::fire;
+      break;
+    case 3:
+      bendingStyle = BendingStyle::water;
+      break;
+  }
 }
 
-// ADDED FUNCTION IMPLEMENTATION for polymorphism fix (This was the previous error)
+/// print stats with correct format 
+void PlayerCharacter::printStats() {
+
+  /// array that stores the races in order for later (for printing race)
+  ///
+  /// for index of array, use the enum value
+  ///
+  /// since order is same in array and enum
+  string bendingStyleArray[4] = {"air", "earth", "fire", "water"};
+
+  cout << "----------Stats for " << name << "----------" << endl;
+  cout << "Name: " << name << endl;
+  cout << "Bending Style: " << bendingStyleArray[bendingStyle] << endl; ///note use enum bendingStyle value as index of array declared above
+  cout << "Health: " << health << endl;
+  cout << "Strength: " << strength << endl;
+  cout << "Agility: " << agility << endl;
+  cout << "Defense: " << defense << endl;
+  cout << "------------------------------------" << endl;
+}
+
+///greeting using the name of PlayerCharacter
+void PlayerCharacter::greet() const {
+  cout << name << " : Hello, my name is " << name << ". How can I help with your quest?" << endl;
+}
+
 void PlayerCharacter::performAction() {
-    cout << "No specific action available for this generic character." << endl;
+  cout << "I am performing an action!" << endl;
+   // cpp file
+
 }
-
-
-// ... (printStats and greet implementations remain unchanged) ...
