@@ -2,47 +2,36 @@
 //  University of Hawaii, College of Engineering
 //  Lab 13b - Game Character Class Part III (Polymorphism) - ECE 205 - Spring 2026
 //
-/// @file    EarthBender.cpp
+/// @file    NPCEarthBender.cpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
-/// EarthBender is a derived class of PlayerCharacter.
+/// NPCEarthBender is a derived class of NPCharacter. EarthBenders use earth manipulation to fight enemies and protect allies.
 /////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include "PlayerCharacter.hpp"
+
+#include "GameCharacter.hpp"
+#include "NPCharacter.hpp"
 #include "EarthBender.hpp"
 #include "Earth_Bending.hpp"
 
 using namespace std;
 
 /// Constructor: initializes the earth bending system
-EarthBender::EarthBender(std::string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
+NPCEarthBender::NPCEarthBender(std::string& characterName, int& raceCode) : NPCharacter(characterName, raceCode) {
     // Initialize earth bending system
     earthBendingSystem = new EarthBending();
 }
 
 // Destructor: Cleanup pointer to prevent memory leaks
-EarthBender::~EarthBender() {
+NPCEarthBender::~NPCEarthBender() {
     delete earthBendingSystem;
     // Free memory allocated in constructor
 }
 
 /// use bending system to perform an earth bending action
-void EarthBender::performAction(PlayerCharacter& target) {
-    int choice = -1;
-    // Initialize choice variable for loop validation
-    cout << "\nGame Master: What would you like " << name << " to do?" << endl;
-    earthBendingSystem->getAvailableBendingActions(target); // Display available actions
-    
-    // Loop ensures the options 0-2 are selected (Validation)
-    while (choice < 0 || choice > 2) {
-        cout << "Enter the number corresponding to your choice (0=Spike, 1=Shield, 2=Slam): ";
-        cin >> choice;
-        if (choice < 0 || choice > 2) {
-            cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl;
-        }
-    }
-    
-    // Call the appropriate function in earthBendingSystem based on user selection.
+void NPCEarthBender::performAction(GameCharacter& target) {
+    // for now, randomize the action selection for NPCs
+    int choice = rand() % 3; // Randomly select an action (0, 1, or 2)
     switch (choice) {
         case 0:
             cout << "\n--- Action Selected: Earth Spike ---\n" << endl;
@@ -56,17 +45,16 @@ void EarthBender::performAction(PlayerCharacter& target) {
             cout << "\n--- Action Selected: Seismic Slam ---\n" << endl;
             earthBendingSystem->seismicSlam(target);
             break;
-    }
 }
 
 /// Print EarthBender-specific stats in addition to base stats
-void EarthBender::printStats() {
-    PlayerCharacter::printStats();
+void NPCEarthBender::printStats() {
+    NPCharacter::printStats();
     cout << "Profession: EarthBender" << endl;
     cout << "------------------------------------" << endl;
 }
 
 /// EarthBender-specific greeting
-void EarthBender::greet() const {
+void NPCEarthBender::greet() const {
     cout << name << " the EarthBender: Greetings! I am " << name << ". The earth is at my command, and I will use it to protect my allies" << endl;
 }

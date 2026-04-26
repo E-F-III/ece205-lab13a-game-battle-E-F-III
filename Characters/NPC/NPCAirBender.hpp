@@ -2,30 +2,32 @@
 //  University of Hawaii, College of Engineering
 //  Lab 13b - Game Character Class Part III (Polymorphism) - ECE 205 - Spring 2026
 //
-/// @file    AirBender.hpp
+/// @file    NPCAirBender.hpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
-/// AirBender is a derived class of PlayerCharacter. AirBenders use air manipulation to fight enemies and protect allies.
+/// NPCAirBender is a derived class of NPCharacter. AirBenders use air manipulation to fight enemies and protect allies.
 /////////////////////////////////////////////////////////////////////////////////
-#ifndef AIRBENDER_HPP
-#define AIRBENDER_HPP
-#include "PlayerCharacter.hpp"
+#ifndef NPCAIRBENDER_HPP
+#define NPCAIRBENDER_HPP
+
+#include "GameCharacter.hpp"
+#include "NPCharacter.hpp"
 #include "Air_Bending.hpp" // CORRECT INCLUDE PATH
 #include <string>
 
 /// AirBender: a profession derived from PlayerCharacter that specializes in air manipulation
-class AirBender : public PlayerCharacter {
+class NPCAirBender : public NPCharacter {
     private:
         // Pointer to AirBending system for performing air bending actions
         AirBending* airBendingSystem;
         
     public:
         /// Constructor:
-        explicit AirBender(std::string& characterName, int& raceCode);
+        explicit NPCAirBender(std::string& characterName, int& raceCode);
         // Destructor: Essential cleanup when using raw pointers
-        ~AirBender();
+        ~NPCAirBender();
         
         /// use bending system to perform an air bending action (REMOVED 'override' KEYWORD)
-        virtual void performAction(PlayerCharacter& target);
+        virtual void performAction(GameCharacter& target);
         
         /// Print AirBender-specific stats in addition to base stats
         void printStats();

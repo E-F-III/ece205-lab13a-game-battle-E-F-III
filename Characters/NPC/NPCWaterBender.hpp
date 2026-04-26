@@ -2,36 +2,38 @@
 //  University of Hawaii, College of Engineering
 //  Lab 13b - Game Character Class Part III (Polymorphism) - ECE 205 - Spring 2026
 //
-/// @file    WaterBender.hpp
+/// @file    NPCWaterBender.hpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
-/// WaterBender is a derived class of PlayerCharacter. WaterBenders use water manipulation to fight enemies and protect allies.
+/// NPCWaterBender is a derived class of NPCharacter. WaterBenders use water manipulation to fight enemies and protect allies.
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef WATERBENDER_HPP
-#define WATERBENDER_HPP
-#include "PlayerCharacter.hpp"
+#ifndef NPCWATERBENDER_HPP
+#define NPCWATERBENDER_HPP
+
+#include "GameCharacter.hpp"
+#include "NPCharacter.hpp"
 #include "Water_Bending.hpp" // CORRECT INCLUDE PATH
 #include <string>
 
-/// WaterBender: a profession derived from PlayerCharacter that specializes in water manipulation
-class WaterBender : public PlayerCharacter {
+/// WaterBender: a profession derived from NPCharacter that specializes in water manipulation
+class NPCWaterBender : public NPCharacter {
     private:
         // Pointer to WaterBending system for performing water bending actions
         WaterBending* waterBendingSystem; 
         
     public:
         /// Constructor:
-        explicit WaterBender(std::string& characterName, int& raceCode);
+        explicit NPCWaterBender(std::string& characterName, int& raceCode);
         // Destructor: Essential cleanup when using raw pointers
-        ~WaterBender();
+        ~NPCWaterBender();
         
         /// use bending system to perform a water bending action
-        virtual void performAction(PlayerCharacter& target);
+        virtual void performAction(GameCharacter& target);
         
-        /// Print WaterBender-specific stats in addition to base stats
+        /// Print NPC-specific stats in addition to base stats
         void printStats();
         
-        /// WaterBender-specific greeting
+        /// NPC-specific greeting
         void greet() const override;
 };
-#endif //WATERBENDER_HPP
+#endif //NPC_HPP

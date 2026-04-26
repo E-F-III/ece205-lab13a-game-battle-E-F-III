@@ -26,7 +26,7 @@ class WaterBender : public PlayerCharacter {
         ~WaterBender();
         
         /// use bending system to perform a water bending action
-        virtual void performAction(PlayerCharacter& target);
+        virtual void performAction(FighterCharacter& target);
         
         /// Print WaterBender-specific stats in addition to base stats
         void printStats();

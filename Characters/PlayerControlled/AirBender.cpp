@@ -26,7 +26,7 @@ AirBender::~AirBender() {
 
 
 /// use bending system to perform an air bending action (This function contains the menu logic)
-void AirBender::performAction(PlayerCharacter& target) {
+void AirBender::performAction(FighterCharacter& target) {
     int choice = -1;
     // Initialize choice variable for loop validation
     cout << "\nGame Master: What would you like " << name << " to do?"

@@ -14,7 +14,7 @@
 #include <vector>
 #include <string>
 
-#include "PlayerCharacter.hpp"
+#include "FighterCharacter.hpp"
 
 /// BendingSystem: manages bending abilities for different character types
 class BendingSystem {
@@ -24,7 +24,7 @@ class BendingSystem {
     virtual ~BendingSystem() = default; // Virtual destructor for proper cleanup of derived classes
     
     /// Display available bending actions for a given character
-    virtual std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) = 0; // Pure virtual function to be implemented by derived classes
+    virtual std::vector<std::string> getAvailableBendingActions(FighterCharacter& character) = 0; // Pure virtual function to be implemented by derived classes
 };
 
 #endif

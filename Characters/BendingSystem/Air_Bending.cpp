@@ -16,14 +16,14 @@ AirBending::AirBending() {
 }
 
 // Air Slice: a quick, slicing gust of wind that can cut through enemies
-void AirBending::airSlice(PlayerCharacter& character) {
+void AirBending::airSlice(FighterCharacter& character) {
     cout << character.getName() << " performs Air Slice! A sharp gust of wind cuts through the enemy." << endl;
     // Implementation of damage logic
     int targetHealth = character.getHealth();
     cout << "\nAir Slice hits!" << endl;
     
     // Calculate damage: Diceroll between 5 and 10
-    int damage = PlayerCharacter::rollDice(5, 10); 
+    int damage = FighterCharacter::rollDice(5, 10); 
     
     // This sets the target health to damage dealt
     character.setHealth(targetHealth - damage); 
@@ -33,7 +33,7 @@ void AirBending::airSlice(PlayerCharacter& character) {
 }
 
 // Air Shield: creates a swirling barrier of wind that protects and deflects attacks
-void AirBending::airShield(PlayerCharacter& character) {
+void AirBending::airShield(FighterCharacter& character) {
     cout << character.getName() << " creates an Air Shield! A swirling barrier of wind protects them from incoming attacks." << endl;
     // Implement defense logic here
     cout << "\nAir Shield activates!" << endl;
@@ -42,12 +42,12 @@ void AirBending::airShield(PlayerCharacter& character) {
 }
 
 // Flight: allows the character to take to the skies, increasing mobility and evasion
-void AirBending::flight(PlayerCharacter& character) {
+void AirBending::flight(FighterCharacter& character) {
     cout << character.getName() << " takes to the skies with Flight! They can now move freely and avoid ground-based attacks." << endl;
     // Implement flight logic here (not implementing for now because basic combat will function without)
 }
 
-std::vector<std::string> AirBending::getAvailableBendingActions(PlayerCharacter& character) {
+std::vector<std::string> AirBending::getAvailableBendingActions(FighterCharacter& character) {
     vector<std::string> actions = {"Air Slice", "Air Shield", "Flight"};
     cout << "Available Air Bending Actions for " << character.getName() << ":" << endl;
     for (size_t i = 0; i < actions.size(); ++i) {

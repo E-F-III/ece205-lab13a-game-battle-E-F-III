@@ -13,6 +13,7 @@ OBJ_DIR  := obj
 # ===========================================================
 SRCS := main.cpp \
         Characters/GameCharacter.cpp \
+        Characters/FighterCharacter.cpp \
         Characters/BendingSystem/Air_Bending.cpp \
         Characters/BendingSystem/Bending_System.cpp \
         Characters/BendingSystem/Earth_Bending.cpp \
@@ -22,7 +23,12 @@ SRCS := main.cpp \
         Characters/PlayerControlled/EarthBender.cpp \
         Characters/PlayerControlled/FireBender.cpp \
         Characters/PlayerControlled/PlayerCharacter.cpp \
-        Characters/PlayerControlled/WaterBender.cpp
+        Characters/PlayerControlled/WaterBender.cpp \
+        Characters/NPC/NPCAirBender.cpp \
+        Characters/NPC/NPCEarthBender.cpp \
+        Characters/NPC/NPCFireBender.cpp \
+        Characters/NPC/NPCCharacter.cpp \
+        Characters/NPC/NPCWaterBender.cpp
 
 # ===========================================================
 # Object files (mirrors source paths under obj/)
@@ -33,7 +39,8 @@ OBJS := $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 INCLUDES := -I. \
             -ICharacters \
             -ICharacters/BendingSystem \
-            -ICharacters/PlayerControlled
+            -ICharacters/PlayerControlled \
+            -ICharacters/NPC
 
 # ===========================================================
 # Default target

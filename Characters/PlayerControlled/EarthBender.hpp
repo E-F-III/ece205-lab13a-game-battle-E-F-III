@@ -27,7 +27,7 @@ class EarthBender : public PlayerCharacter {
         ~EarthBender();
         
         /// use bending system to perform an earth bending action (REMOVED 'override' KEYWORD)
-        virtual void performAction(PlayerCharacter& target);
+        virtual void performAction(FighterCharacter& target);
         
         /// Print EarthBender-specific stats in addition to base stats
         void printStats();

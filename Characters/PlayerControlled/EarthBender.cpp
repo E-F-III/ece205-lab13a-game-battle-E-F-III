@@ -27,7 +27,7 @@ EarthBender::~EarthBender() {
 }
 
 /// use bending system to perform an earth bending action
-void EarthBender::performAction(PlayerCharacter& target) {
+void EarthBender::performAction(FighterCharacter& target) {
     int choice = -1;
     // Initialize choice variable for loop validation
     cout << "\nGame Master: What would you like " << name << " to do?" << endl;

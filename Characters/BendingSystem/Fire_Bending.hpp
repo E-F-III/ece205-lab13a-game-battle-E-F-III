@@ -15,10 +15,10 @@ class FireBending : public BendingSystem { // Base class is BendingSystem
 public:
     /// Constructor: initializes the fire bending system
     FireBending();
-    void fireBlast(PlayerCharacter& character);
-    void fireBreath(PlayerCharacter& character);
-    void lightningStrike(PlayerCharacter& character);
+    void fireBlast(FighterCharacter& character);
+    void fireBreath(FighterCharacter& character);
+    void lightningStrike(FighterCharacter& character);
     /// Display available fire bending actions for a given character
-    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override; // Keep virtual and override here
+    std::vector<std::string> getAvailableBendingActions(FighterCharacter& character) override; // Keep virtual and override here
 };
 #endif

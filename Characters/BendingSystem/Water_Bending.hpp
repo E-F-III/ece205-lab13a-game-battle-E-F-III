@@ -15,10 +15,10 @@ class WaterBending : public BendingSystem { // Base class is BendingSystem
 public:
     /// Constructor: initializes the water bending system
     WaterBending();
-    void healingWaters(PlayerCharacter& character);
-    void waterWhip(PlayerCharacter& character);
-    void iceBarrier(PlayerCharacter& character);
+    void healingWaters(FighterCharacter& character);
+    void waterWhip(FighterCharacter& character);
+    void iceBarrier(FighterCharacter& character);
     /// Display available water bending actions for a given character
-    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override; // Keep virtual and override here
+    std::vector<std::string> getAvailableBendingActions(FighterCharacter& character) override; // Keep virtual and override here
 };
 #endif 

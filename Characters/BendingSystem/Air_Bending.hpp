@@ -15,10 +15,10 @@ class AirBending : public BendingSystem { // Base class is BendingSystem
 public:
     /// Constructor: initializes the air bending system
     AirBending();
-    void airSlice(PlayerCharacter& character);
-    void airShield(PlayerCharacter& character);
-    void flight(PlayerCharacter& character);
+    void airSlice(FighterCharacter& character);
+    void airShield(FighterCharacter& character);
+    void flight(FighterCharacter& character);
     /// Display available air bending actions for a given character
-    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override; // Keep virtual and override here
+    std::vector<std::string> getAvailableBendingActions(FighterCharacter& character) override; // Keep virtual and override here
 };
 #endif

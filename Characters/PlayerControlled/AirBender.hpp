@@ -25,7 +25,7 @@ class AirBender : public PlayerCharacter {
         ~AirBender();
         
         /// use bending system to perform an air bending action (REMOVED 'override' KEYWORD)
-        virtual void performAction(PlayerCharacter& target);
+        virtual void performAction(FighterCharacter& target);
         
         /// Print AirBender-specific stats in addition to base stats
         void printStats();

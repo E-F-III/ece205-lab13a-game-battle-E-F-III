@@ -15,10 +15,10 @@ class EarthBending : public BendingSystem { // Base class is BendingSystem
 public:
     /// Constructor: initializes the earth bending system
     EarthBending();
-    void earthSpike(PlayerCharacter& character);
-    void rockShield(PlayerCharacter& character);
-    void seismicSlam(PlayerCharacter& character);
+    void earthSpike(FighterCharacter& character);
+    void rockShield(FighterCharacter& character);
+    void seismicSlam(FighterCharacter& character);
     /// Display available earth bending actions for a given character
-    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override; // Keep virtual and override here
+    std::vector<std::string> getAvailableBendingActions(FighterCharacter& character) override; // Keep virtual and override here
 };
 #endif 

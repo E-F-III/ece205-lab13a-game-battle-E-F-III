@@ -13,11 +13,16 @@
 #pragma once
 #include <string>
 
-class GameCharacter {
+enum BendingStyle {
+    air,
+    earth,
+    fire,
+    water
+};
 
+class GameCharacter {
   protected:
     std::string name;//Name of Game Character object
-
 
   public:
     //This class offers two constructors:

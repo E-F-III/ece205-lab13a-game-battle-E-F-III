@@ -16,13 +16,13 @@ EarthBending::EarthBending() {
 }
 
 // Earth Spike: a sharp spike of earth that can impale enemies
-void EarthBending::earthSpike(PlayerCharacter& character) {
+void EarthBending::earthSpike(FighterCharacter& character) {
     // Implementation of damage logic here (modified to interact with passed player ref)
     int targetHealth = character.getHealth();
     cout << "\nEarth Spike hits!" << endl;
     
     // Calculate damage: Diceroll between 5 and 10 for spike attack
-    int damage = PlayerCharacter::rollDice(5, 10); 
+    int damage = FighterCharacter::rollDice(5, 10); 
     
     // Update health via getter/setter to ensure specific instance update
     character.setHealth(targetHealth - damage); 
@@ -31,7 +31,7 @@ void EarthBending::earthSpike(PlayerCharacter& character) {
 }
 
 // Rock Shield: creates a sturdy shield of rock that can block attacks
-void EarthBending::rockShield(PlayerCharacter& character) {
+void EarthBending::rockShield(FighterCharacter& character) {
     // Implementation of defense logic here (modified to protect passed player ref)
     cout << "\nRock Shield activates!" << endl;
     // In this simple game, shielding prevents immediate damage
@@ -39,13 +39,13 @@ void EarthBending::rockShield(PlayerCharacter& character) {
 }
 
 // Seismic Slam: slams the ground to create a shockwave that damages and knocks back enemies
-void EarthBending::seismicSlam(PlayerCharacter& character) {
+void EarthBending::seismicSlam(FighterCharacter& character) {
     // Implementation of area damage logic here (modified to damage passed player ref)
     int targetHealth = character.getHealth();
     cout << "\nSeismic Slam hits!" << endl;
     
     // Calculate damage: Higher range for slam attack
-    int damage = PlayerCharacter::rollDice(8, 15); 
+    int damage = FighterCharacter::rollDice(8, 15); 
     
     // Update health via getter/setter to ensure specific instance update
     character.setHealth(targetHealth - damage); 
@@ -53,7 +53,7 @@ void EarthBending::seismicSlam(PlayerCharacter& character) {
     cout << "Seismic Slam deals " << damage << " damage to " << character.getName() << endl; 
 }
 
-std::vector<std::string> EarthBending::getAvailableBendingActions(PlayerCharacter& character) {
+std::vector<std::string> EarthBending::getAvailableBendingActions(FighterCharacter& character) {
     vector<std::string> actions = {"Earth Spike", "Rock Shield", "Seismic Slam"};
     cout << "Available Earth Bending Actions for " << character.getName() << ":" << endl;
     for (size_t i = 0; i < actions.size(); ++i) {

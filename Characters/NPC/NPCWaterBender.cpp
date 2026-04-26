@@ -2,47 +2,36 @@
 //  University of Hawaii, College of Engineering
 //  Lab 13b - Game Character Class Part III (Polymorphism) - ECE 205 - Spring 2026
 //
-/// @file    WaterBender.cpp
+/// @file    NPCWaterBender.cpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
-/// WaterBender is a derived class of PlayerCharacter.
+/// NPCWaterBender is a derived class of NPCharacter. WaterBenders use water manipulation to fight enemies and protect allies.
 /////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include "PlayerCharacter.hpp"
+
+#include "GameCharacter.hpp"
+#include "NPCharacter.hpp"
 #include "WaterBender.hpp"
 #include "Water_Bending.hpp"
 
 using namespace std;
 
 /// Constructor: initializes the water bending system
-WaterBender::WaterBender(std::string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
+NPCWaterBender::NPCWaterBender(std::string& characterName, int& raceCode) : NPCharacter(characterName, raceCode) {
     // Initialize water bending system
     waterBendingSystem = new WaterBending();
 }
 
 // Destructor: Cleanup pointer to prevent memory leaks
-WaterBender::~WaterBender() {
+NPCWaterBender::~NPCWaterBender() {
     delete waterBendingSystem;
     // Free memory allocated in constructor
 }
 
 /// use bending system to perform a water bending action
-void WaterBender::performAction(PlayerCharacter& target) {
-    int choice = -1;
-    // Initialize choice variable for loop validation
-    cout << "\nGame Master: What would you like " << name << " to do?" << endl;
-    waterBendingSystem->getAvailableBendingActions(target); // Display available actions
-    
-    // Loop ensures the options 0-2 are selected (Validation)
-    while (choice < 0 || choice > 2) {
-        cout << "Enter the number corresponding to your choice (0=Healing, 1=Whip, 2=Barrier): ";
-        cin >> choice;
-        if (choice < 0 || choice > 2) {
-            cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl;
-        }
-    }
-    
-    // Call the appropriate function in waterBendingSystem based on user selection.
+void NPCWaterBender::performAction(GameCharacter& target) {
+    // for now, randomize the action selection for NPCs
+    int choice = rand() % 3; // Randomly select an action (0, 1, or 2)
     switch (choice) {
         case 0:
             cout << "\n--- Action Selected: Healing Waters ---\n" << endl;
@@ -56,12 +45,11 @@ void WaterBender::performAction(PlayerCharacter& target) {
             cout << "\n--- Action Selected: Ice Barrier ---\n" << endl;
             waterBendingSystem->iceBarrier(target);
             break;
-    }
 }
 
 /// Print WaterBender-specific stats in addition to base stats
 void WaterBender::printStats() {
-    PlayerCharacter::printStats();
+    NPCharacter::printStats();
     cout << "Profession: WaterBender" << endl;
     cout << "------------------------------------" << endl;
 }

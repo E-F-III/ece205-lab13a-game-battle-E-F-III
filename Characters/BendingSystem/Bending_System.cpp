@@ -17,7 +17,7 @@ BendingSystem::BendingSystem() {
 }
 
 /// Display available bending actions for a given character
-std::vector<std::string> BendingSystem::getAvailableBendingActions(PlayerCharacter& character) {
+std::vector<std::string> BendingSystem::getAvailableBendingActions(FighterCharacter& character) {
     cout << "Available bending actions for " << character.getName() << ":" << endl;
     // This function would contain logic to display bending actions based on character type
     return {}; // Placeholder return, replace with actual available actions (fixes warning)

@@ -27,7 +27,7 @@ class FireBender : public PlayerCharacter {
         ~FireBender();
         
         /// use bending system to perform a fire bending action
-        virtual void performAction(PlayerCharacter& target);
+        virtual void performAction(FighterCharacter& target);
         
         /// Print FireBender-specific stats in addition to base stats
         void printStats();

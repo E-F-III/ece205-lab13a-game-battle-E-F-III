@@ -7,53 +7,24 @@
 /// @author  Steven Daniel Javier <sdjavier@hawaii.edu>
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef PLAYERCHARACTER_H
-#define PLAYERCHARACTER_H
-#include "GameCharacter.hpp" ///base class
+#ifndef PLAYERCHARACTER_HPP
+#define PLAYERCHARACTER_HPP
+
+#include "FighterCharacter.hpp"
 #include <string>
 
-enum BendingStyle {
-    air,
-    earth,
-    fire,
-    water
+class PlayerCharacter : public FighterCharacter {
+    public:
+        // Pass parameters up to the FighterCharacter constructor
+        PlayerCharacter(std::string& characterName, int& bendingStyleCode);
+
+        virtual ~PlayerCharacter() = default;
+
+        // You can override greet if players have a specific greeting
+        void greet() const override;
+
+        // Specific player logic (like manual target selection)
+        void performAction(FighterCharacter& target) override;
 };
 
-class PlayerCharacter : public GameCharacter {
-protected:
-    int health;
-    int strength;
-    int agility;
-    int defense;
-    int bendingStyle;
-
-public:
-    PlayerCharacter(std::string& characterName, int& bendingStyleCode);
-    
-    /// Virtual Destructor added to fix undefined behavior warning during deletion
-    virtual ~PlayerCharacter() = default;
-
-    int getHealth();
-    int getAgility();
-    int getDefense();
-    int getStrength();
-    int getBendingStyle();
-
-    void setHealth(int health);
-    void setStrength(int strength);
-    void setAgility(int agility);
-    void setDefense(int defense);
-    void setBendingStyle(int bendingStyleChoice);
-
-    static int rollDice(int lower, int upper);
-    
-    void printStats();
-
-    ///PlayerCharacter greeting using given name and generic message
-    void greet() const override;
-
-    ///from lab12a instructions
-    virtual void performAction(PlayerCharacter& target);
-};
-
-#endif //PLAYERCHARACTER_H
+#endif
