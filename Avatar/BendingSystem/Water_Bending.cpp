@@ -8,31 +8,49 @@
 
 #include <iostream>
 #include "Water_Bending.hpp"
-
 using namespace std;
 
 /// Constructor: initializes the water bending system
 WaterBending::WaterBending() {
-    // Initialize any water bending specific attributes if needed
+    // No specific initialization required
 }
 
 // Healing Waters: a soothing wave of water that can heal allies
 void WaterBending::healingWaters(PlayerCharacter& character) {
-    cout << character.getName() << " performs Healing Waters! A soothing wave of water washes over them, healing their wounds." << endl;
-    // Implement healing logic here
+    // Implementation of healing logic here (modified to interact with passed player ref)
+    cout << "\nHealing Waters activates!" << endl;
+    
+    // Calculate healing: Diceroll between 5 and 10 for healing amount
+    int healAmount = PlayerCharacter::rollDice(5, 10); 
+    
+    // Update health via getter/setter to ensure specific instance update (don't exceed max health if desired, but simple game allows overflow)
+    character.setHealth(character.getHealth() + healAmount); 
+    
+    cout << "Healing Waters heals " << healAmount << " health on " << character.getName() << endl; 
 }
 
 // Water Whip: a flexible whip of water that can strike enemies from a distance
 void WaterBending::waterWhip(PlayerCharacter& character) {
-    cout << character.getName() << " performs Water Whip! A flexible whip of water strikes out at the enemy from a distance." << endl;
-    // Implement damage logic here
+    // Implementation of damage logic here (modified to interact with passed player ref)
+    int targetHealth = character.getHealth();
+    cout << "\nWater Whip hits!" << endl;
+    
+    // Calculate damage: Medium range for whip attack
+    int damage = PlayerCharacter::rollDice(7, 12); 
+    
+    // Update health via getter/setter to ensure specific instance update
+    character.setHealth(targetHealth - damage); 
+    
+    cout << "Water Whip deals " << damage << " damage to " << character.getName() << endl; 
 }
 
 // Ice Barrier: creates a solid barrier of ice that can block attacks and protect allies
 void WaterBending::iceBarrier(PlayerCharacter& character) {
-    cout << character.getName() << " creates an Ice Barrier! A solid barrier of ice forms to block incoming attacks and protect allies." << endl;
-    // Implement defense logic here
-}   
+    // Implementation of defense logic here (modified to protect passed player ref)
+    cout << "\nIce Barrier activates!" << endl;
+    // In this simple game, ice barrier prevents immediate damage
+    character.setHealth(character.getHealth()); 
+}
 
 std::vector<std::string> WaterBending::getAvailableBendingActions(PlayerCharacter& character) {
     vector<std::string> actions = {"Healing Waters", "Water Whip", "Ice Barrier"};

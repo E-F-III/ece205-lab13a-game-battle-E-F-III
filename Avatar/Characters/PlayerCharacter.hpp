@@ -7,69 +7,53 @@
 /// @author  Steven Daniel Javier <sdjavier@hawaii.edu>
 ///////////////////////////////////////////////////////////////////////////////
 
-
 #ifndef PLAYERCHARACTER_H
 #define PLAYERCHARACTER_H
-
 #include "GameCharacter.hpp" ///base class
 #include <string>
 
-using namespace std;
+enum BendingStyle {
+    air,
+    earth,
+    fire,
+    water
+};
 
-///PlayerCharacter class declaration derived from GameCharacter
 class PlayerCharacter : public GameCharacter {
-
-  ///protected stats and race
-  protected:
+protected:
     int health;
+    int strength;
     int agility;
     int defense;
-    int strength;
+    int bendingStyle;
 
-    enum BendingStyle {
-      air,
-      earth,
-      fire,
-      water
-    };
+public:
+    PlayerCharacter(std::string& characterName, int& bendingStyleCode);
+    
+    /// Virtual Destructor added to fix undefined behavior warning during deletion
+    virtual ~PlayerCharacter() = default;
 
-    BendingStyle bendingStyle;
-
-  public:
-
-    ///function to generate random number within range
-    int rollDice(int lower, int upper);
-
-    ///use pass by referance
-    ///explicit no unintended type conversions
-    ///constructor takes in address of the name and takes value of race as an int
-    explicit PlayerCharacter(string& characterName, int& raceCode);
-
-    ///getters
     int getHealth();
     int getAgility();
     int getDefense();
     int getStrength();
-    BendingStyle getBendingStyle();
+    int getBendingStyle();
 
-    ///setters
-    void setHealth(int& newHealth);
-    void setAgility(int& newAgility);
-    void setDefense(int& newDefense);
-    void setStrength(int& newStrength);
-    void setBendingStyle(int& newBendingStyle);
+    void setHealth(int health);
+    void setStrength(int strength);
+    void setAgility(int agility);
+    void setDefense(int defense);
+    void setBendingStyle(int bendingStyleChoice);
 
-    ///print all stats to match prompt
+    static int rollDice(int lower, int upper);
+    
     void printStats();
 
     ///PlayerCharacter greeting using given name and generic message
     void greet() const override;
 
     ///from lab12a instructions
-    
-    virtual void performAction();
-
+    virtual void performAction(PlayerCharacter& target);
 };
 
 #endif //PLAYERCHARACTER_H
-
