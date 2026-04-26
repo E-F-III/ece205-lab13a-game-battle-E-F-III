@@ -47,3 +47,9 @@ void FighterCharacter::printStats() {
     std::cout << "Bending: " << styleNames[bendingStyle] << std::endl;
     std::cout << "Health: " << health << std::endl;
 }
+
+// perform action is a placeholder for now, but it will be the main function that handles combat logic and interactions with other characters.
+void FighterCharacter::performAction(FighterCharacter& target) {
+    std::cout << name << " performs a basic attack on " << target.getName() << "!" << std::endl;
+    // Basic attack logic can be implemented here, and this method can be overridden by derived classes for more specific actions.
+}

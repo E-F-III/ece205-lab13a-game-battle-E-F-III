@@ -11,7 +11,7 @@
 
 #include "GameCharacter.hpp"
 #include "NPCharacter.hpp"
-#include "WaterBender.hpp"
+#include "NPCWaterBender.hpp"
 #include "Water_Bending.hpp"
 
 using namespace std;
@@ -29,7 +29,7 @@ NPCWaterBender::~NPCWaterBender() {
 }
 
 /// use bending system to perform a water bending action
-void NPCWaterBender::performAction(GameCharacter& target) {
+void NPCWaterBender::performAction(FighterCharacter& target) {
     // for now, randomize the action selection for NPCs
     int choice = rand() % 3; // Randomly select an action (0, 1, or 2)
     switch (choice) {
@@ -45,6 +45,7 @@ void NPCWaterBender::performAction(GameCharacter& target) {
             cout << "\n--- Action Selected: Ice Barrier ---\n" << endl;
             waterBendingSystem->iceBarrier(target);
             break;
+    }
 }
 
 /// Print WaterBender-specific stats in addition to base stats

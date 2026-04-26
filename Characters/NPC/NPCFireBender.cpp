@@ -11,7 +11,7 @@
 
 #include "GameCharacter.hpp"
 #include "NPCharacter.hpp"
-#include "FireBender.hpp"
+#include "NPCFireBender.hpp"
 #include "Fire_Bending.hpp"
 
 using namespace std;
@@ -29,7 +29,7 @@ NPCFireBender::~NPCFireBender() {
 }
 
 /// use bending system to perform a fire bending action
-void NPCFireBender::performAction(GameCharacter& target) {
+void NPCFireBender::performAction(FighterCharacter& target) {
     // for now, randomize the action selection for NPCs
     int choice = rand() % 3; // Randomly select an action (0, 1, or 2)
     switch (choice) {

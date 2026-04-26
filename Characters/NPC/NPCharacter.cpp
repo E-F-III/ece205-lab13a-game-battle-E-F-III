@@ -31,6 +31,6 @@ void NPCharacter::greet() const {
     cout << name << " : Hello, my name is " << name << ". How can I help with your quest?" << endl;
 }
 
-void NPCharacter::performAction(GameCharacter& target) {
+void NPCharacter::performAction(FighterCharacter& target) {
     cout << "I am performing an action!" << endl;
 }

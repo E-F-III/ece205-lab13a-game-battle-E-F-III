@@ -28,7 +28,7 @@ class NPCFireBender : public NPCharacter {
         ~NPCFireBender();
         
         /// use bending system to perform a fire bending action
-        virtual void performAction(GameCharacter& target);
+        virtual void performAction(FighterCharacter& target);
         
         /// Print NPCFireBender-specific stats in addition to base stats
         void printStats();

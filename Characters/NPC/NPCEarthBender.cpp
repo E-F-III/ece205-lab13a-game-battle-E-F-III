@@ -11,7 +11,7 @@
 
 #include "GameCharacter.hpp"
 #include "NPCharacter.hpp"
-#include "EarthBender.hpp"
+#include "NPCEarthBender.hpp"
 #include "Earth_Bending.hpp"
 
 using namespace std;
@@ -29,7 +29,7 @@ NPCEarthBender::~NPCEarthBender() {
 }
 
 /// use bending system to perform an earth bending action
-void NPCEarthBender::performAction(GameCharacter& target) {
+void NPCEarthBender::performAction(FighterCharacter& target) {
     // for now, randomize the action selection for NPCs
     int choice = rand() % 3; // Randomly select an action (0, 1, or 2)
     switch (choice) {
@@ -45,6 +45,7 @@ void NPCEarthBender::performAction(GameCharacter& target) {
             cout << "\n--- Action Selected: Seismic Slam ---\n" << endl;
             earthBendingSystem->seismicSlam(target);
             break;
+    }
 }
 
 /// Print EarthBender-specific stats in addition to base stats

@@ -28,7 +28,7 @@ NPCAirBender::~NPCAirBender() {
 
 
 /// use bending system to perform an air bending action (This function contains the menu logic)
-void NPCAirBender::performAction(GameCharacter& target) {
+void NPCAirBender::performAction(FighterCharacter& target) {
     // for now, randomize the action selection for NPCs
     int choice = rand() % 3; // Randomly select an action (0, 1, or 2)
     switch (choice) {

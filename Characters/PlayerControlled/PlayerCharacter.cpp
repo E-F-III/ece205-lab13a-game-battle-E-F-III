@@ -29,5 +29,5 @@ void PlayerCharacter::greet() const {
 }
 
 void PlayerCharacter::performAction(FighterCharacter& target) {
-    cout << "I am performing an action!" << endl;
+    cout << "I am performing an action  on " << target.getName() << "!" << endl;
 }

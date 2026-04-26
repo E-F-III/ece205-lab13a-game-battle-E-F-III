@@ -26,7 +26,7 @@ class NPCharacter : public FighterCharacter {
         void greet() const override;
 
         // Specific NPC logic (like AI-driven target selection)
-        void performAction(GameCharacter& target) override;
+        void performAction(FighterCharacter& target) override;
 };
 
 #endif

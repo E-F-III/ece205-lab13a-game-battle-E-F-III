@@ -28,7 +28,7 @@ class NPCWaterBender : public NPCharacter {
         ~NPCWaterBender();
         
         /// use bending system to perform a water bending action
-        virtual void performAction(GameCharacter& target);
+        virtual void performAction(FighterCharacter& target);
         
         /// Print NPC-specific stats in addition to base stats
         void printStats();

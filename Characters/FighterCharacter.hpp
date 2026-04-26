@@ -49,7 +49,7 @@ class FighterCharacter : public GameCharacter {
         void greet() const override;
 
         // Action logic
-        virtual void performAction(GameCharacter& target); // Base implementation can be overridden by derived classes for specific actions
+        virtual void performAction(FighterCharacter& target); // Base implementation can be overridden by derived classes for specific actions
 };
 
 #endif //FIGHTERCHARACTER_HPP
