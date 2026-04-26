@@ -4,35 +4,35 @@
 //
 /// @file    FireBender.hpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
-/// FireBender is a derived class of PlayerCharacter. FireBenders use fire manipulation to fight enemies and protect allies.
+/// FireBender is a derived class of PlayerCharacter.
+/// FireBenders use fire manipulation to fight enemies and protect allies.
 /////////////////////////////////////////////////////////////////////////////////
 
 #ifndef FIREBENDER_HPP
 #define FIREBENDER_HPP
-
 #include "PlayerCharacter.hpp"
-#include "../BendingSystem/Fire_Bending.hpp"
+#include "../BendingSystem/Fire_Bending.hpp" // CORRECT INCLUDE PATH
+#include <string>
 
 /// FireBender: a profession derived from PlayerCharacter that specializes in fire manipulation
-class FireBender : public PlayerCharacter, public FireBending {
-    
+class FireBender : public PlayerCharacter {
     private:
-    // FireBender-specific attributes could be added here if needed
-        FireBending* fireBendingSystem; ///< pointer to FireBending system for performing fire bending actions
-
+        // Pointer to FireBending system for performing fire bending actions
+        FireBending* fireBendingSystem;
+        
     public:
-    /// Constructor:
-    FireBender(std::string& characterName, int& raceCode);
-
-    /// use bending system to perform a fire bending action
-    void performAction() override;
-
-    /// Print FireBender-specific stats in addition to base stats
-    void printStats();
-
-    /// FireBender-specific greeting
-    void greet() const override;
-
+        /// Constructor:
+        explicit FireBender(std::string& characterName, int& raceCode);
+        // Destructor: Essential cleanup when using raw pointers
+        ~FireBender();
+        
+        /// use bending system to perform a fire bending action
+        virtual void performAction(PlayerCharacter& target);
+        
+        /// Print FireBender-specific stats in addition to base stats
+        void printStats();
+        
+        /// FireBender-specific greeting
+        void greet() const override;
 };
-
-#endif
+#endif //FIREBENDER_HPP

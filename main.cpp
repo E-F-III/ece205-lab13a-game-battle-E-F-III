@@ -10,7 +10,6 @@
 #include <iostream>
 #include <string>
 
-// #include "PlayerCharacter.hpp"
 #include "./Avatar/Characters/PlayerCharacter.hpp"
 #include "./Avatar/Characters/AirBender.hpp"
 #include "./Avatar/Characters/EarthBender.hpp"
@@ -97,46 +96,46 @@ void displayHealth(std::vector<PlayerCharacter*> players,
 
 // void attackTarget: attacks the player
 
-void attackTarget(PlayerCharacter* attacker,
-                  std::vector<PlayerCharacter*> targets)
-{
-    if (attacker->getHealth() <= 0) return; // attacker attacks the entity that's alive 
-    // get the attacker's name and display: 
-    std::cout << "\nIt is " << attacker->getName() << "'s turn!\n";
-    // performAction()
-    attacker->performAction(); // 
-    // Choose a target
-    std::cout << "\nChoose a target:\n";
-    // iterate through the targets
-    for (int i = 0; i < targets.size(); i++) {
-        if (targets[i]->getHealth() > 0) { // if health over 0
-            std::cout << i << " = " << targets[i]->getName() // display attacker's health
-                      << " Health: " << targets[i]->getHealth() << std::endl;
-        } 
-    }
+// void attackTarget(PlayerCharacter* attacker,
+//                   std::vector<PlayerCharacter*> targets)
+// {
+//     if (attacker->getHealth() <= 0) return; // attacker attacks the entity that's alive 
+//     // get the attacker's name and display: 
+//     std::cout << "\nIt is " << attacker->getName() << "'s turn!\n";
+//     // performAction()
+//     attacker->performAction(); // 
+//     // Choose a target
+//     std::cout << "\nChoose a target:\n";
+//     // iterate through the targets
+//     for (int i = 0; i < targets.size(); i++) {
+//         if (targets[i]->getHealth() > 0) { // if health over 0
+//             std::cout << i << " = " << targets[i]->getName() // display attacker's health
+//                       << " Health: " << targets[i]->getHealth() << std::endl;
+//         } 
+//     }
 
-    int targetChoice; // when the player chooses the target, show the target anem
-    std::cout << "Target: ";
-    std::cin >> targetChoice;
+//     int targetChoice; // when the player chooses the target, show the target anem
+//     std::cout << "Target: ";
+//     std::cin >> targetChoice;
 
-    while (targetChoice < 0 || // while target choise is valid
-           targetChoice >= targets.size() ||
-           targets[targetChoice]->getHealth() <= 0) {
-        std::cout << "Invalid target. Choose again: "; // error check
-        std::cin >> targetChoice;
-    }
+//     while (targetChoice < 0 || // while target choise is valid
+//            targetChoice >= targets.size() ||
+//            targets[targetChoice]->getHealth() <= 0) {
+//         std::cout << "Invalid target. Choose again: "; // error check
+//         std::cin >> targetChoice;
+//     }
 
-    int damage = 10; // deal the damage
+//     int damage = 10; // deal the damage
 
-    int newHealth = targets[targetChoice]->getHealth() - damage;
-    if (newHealth < 0) newHealth = 0;
+//     int newHealth = targets[targetChoice]->getHealth() - damage;
+//     if (newHealth < 0) newHealth = 0;
 
-    targets[targetChoice]->setHealth(newHealth);
+//     targets[targetChoice]->setHealth(newHealth);
 
-    std::cout << attacker->getName() << " dealt " // display how much damage was dealt to the target
-              << damage << " damage to "
-              << targets[targetChoice]->getName() << "!\n";
-}
+//     std::cout << attacker->getName() << " dealt " // display how much damage was dealt to the target
+//               << damage << " damage to "
+//               << targets[targetChoice]->getName() << "!\n";
+// }
 
 
 
@@ -146,54 +145,70 @@ int main()
     int characterRace;
     int characterBendingStyle;
 
-    //  --- Get character name
+    //  --- Get character name --- [cite: 3]
     cout << "Enter a name for your character: " << endl;
     getline(cin, characterName); 
-    //  --- Get character race
+    
+    //  --- Get character race --- [cite: 4]
     cout << "Enter a race for your character (0 = Human, 1 = Fishman, 2 = Giant, 3 = Dwarf): ";
     cin >> characterRace;
 
-    // --- Get character bending style ---
+    // --- Get character bending style --- [cite: 5]
     cout << "Enter a bending style (0 = Air, 1 = Earth, 2 = Fire, 3 = Water): ";
     cin >> characterBendingStyle;
 
-    // Validate bending style input
+    // Validate bending style input [cite: 6, 7]
     while (characterBendingStyle < 0 || characterBendingStyle > 3) {
         cout << "Invalid! Enter 0 = Air, 1 = Earth, 2 = Fire, 3 = Water: ";
         cin >> characterBendingStyle;
     }
 
-    // --- Create character (runtime polymorphism) ---
+    // --- Create player character (runtime polymorphism) --- [cite: 8]
     PlayerCharacter* player = nullptr;
-
     switch (characterBendingStyle) {
-        case 0: player = new AirBender(characterName, characterRace);     break;
-        case 1: player = new EarthBender(characterName, characterRace);    break;
+         case 0: player = new AirBender(characterName, characterRace);   break;
+        case 1: player = new EarthBender(characterName, characterRace); break;
         case 2: player = new FireBender(characterName, characterRace);  break;
         case 3: player = new WaterBender(characterName, characterRace); break;
     }
 
+    // --- INITIALIZE BOB (The Target) ---
+    // We create Bob as a generic PlayerCharacter to act as our punching bag
+    string bobName = "Bob";
+    int bobRace = 0; // Human
+    PlayerCharacter bob(bobName, bobRace);
+
     // --- Display stats and greet ---
     cout << endl;
-    player->printStats();
+    player->printStats(); 
     cout << endl;
-    player->greet();
+    player->greet(); 
 
+    cout << "\n=== A wild BOB appears for target practice! ===" << endl;
+    bob.printStats();
 
     char playAgain = 'y';
-    while (playAgain == 'y' || playAgain == 'Y') {
-        player->performAction();
+    // The loop continues as long as you want to play AND Bob is still standing
+    while ((playAgain == 'y' || playAgain == 'Y') && bob.getHealth() > 0) {
+        
+        // We pass 'bob' into the action so your math affects Bob's health
+        player->performAction(bob); 
+        cout << "\nyour's Remaining Health: " << player->getHealth() << endl;
+        cout << "\nBob's Remaining Health: " << bob.getHealth() << endl;
 
-        cout << "\nWould you like to perform another action? (y/n): ";
+        if (bob.getHealth() <= 0) {
+            cout << "Bob has been defeated! Practice session over." << endl;
+            break;
+        }
+
+        cout << "\nWould you like to perform another action on Bob? (y/n): "; 
         cin >> playAgain;
-    }
+    } 
 
-    cout << "\nFarewell, " << characterName << "! Until next time." << endl;
-
-    // Note: PlayerCharacter has no virtual destructor.
-    // Setting pointer to nullptr; OS reclaims memory on program exit.
-    player = nullptr;
+    cout << "\nFarewell, " << characterName << "! Until next time." << endl; 
+    
+    // Clean up
+    delete player;
 
     return 0;
 }
-

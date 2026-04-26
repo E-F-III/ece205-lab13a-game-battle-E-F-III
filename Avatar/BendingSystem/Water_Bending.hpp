@@ -5,26 +5,20 @@
 /// @file    Water_Bending.hpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
 ///
-/// WaterBending is a derived class of BendingSystem. WaterBenders use water manipulation to fight enemies and protect allies.
+/// WaterBender is a derived class of PlayerCharacter. WaterBenders use water manipulation to fight enemies and protect allies.
 ///////////////////////////////////////////////////////////////////////////////
-
 #ifndef WATER_BENDING_HPP
 #define WATER_BENDING_HPP
-
 #include "Bending_System.hpp"
-
 /// WaterBending: manages water bending abilities for WaterBender characters
-class WaterBending : public BendingSystem {
-    public:
+class WaterBending : public BendingSystem { // Base class is BendingSystem
+public:
     /// Constructor: initializes the water bending system
     WaterBending();
-    
     void healingWaters(PlayerCharacter& character);
     void waterWhip(PlayerCharacter& character);
     void iceBarrier(PlayerCharacter& character);
-    
     /// Display available water bending actions for a given character
-    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override;
+    std::vector<std::string> getAvailableBendingActions(PlayerCharacter& character) override; // Keep virtual and override here
 };
-
-#endif
+#endif 
