@@ -11,10 +11,11 @@
 #include "./PlayerCharacter.hpp"
 #include "./EarthBender.hpp"
 #include "../BendingSystem/Earth_Bending.hpp"
+
 using namespace std;
 
 /// Constructor: initializes the earth bending system
-EarthBender::EarthBender(string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
+EarthBender::EarthBender(std::string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
     // Initialize earth bending system
     earthBendingSystem = new EarthBending();
 }
@@ -22,22 +23,20 @@ EarthBender::EarthBender(string& characterName, int& raceCode) : PlayerCharacter
 // Destructor: Cleanup pointer to prevent memory leaks
 EarthBender::~EarthBender() {
     delete earthBendingSystem;
-// Free memory allocated in constructor
+    // Free memory allocated in constructor
 }
 
 /// use bending system to perform an earth bending action
-void EarthBender::performAction() {
+void EarthBender::performAction(PlayerCharacter& target) {
     int choice = -1;
-// Initialize choice variable for loop validation
-    
+    // Initialize choice variable for loop validation
     cout << "\nGame Master: What would you like " << name << " to do?" << endl;
     earthBendingSystem->getAvailableBendingActions(target); // Display available actions
     
     // Loop ensures the options 0-2 are selected (Validation)
-    while (choice < 0 || choice > 2) { 
+    while (choice < 0 || choice > 2) {
         cout << "Enter the number corresponding to your choice (0=Spike, 1=Shield, 2=Slam): ";
-        cin >> choice; 
-        
+        cin >> choice;
         if (choice < 0 || choice > 2) {
             cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl;
         }
@@ -47,15 +46,15 @@ void EarthBender::performAction() {
     switch (choice) {
         case 0:
             cout << "\n--- Action Selected: Earth Spike ---\n" << endl;
-            earthBendingSystem->earthSpike(target);   
+            earthBendingSystem->earthSpike(target);
             break;
         case 1:
             cout << "\n--- Action Selected: Rock Shield ---\n" << endl;
-            earthBendingSystem->rockShield(target);  
+            earthBendingSystem->rockShield(target);
             break;
         case 2:
             cout << "\n--- Action Selected: Seismic Slam ---\n" << endl;
-            earthBendingSystem->seismicSlam(target);      
+            earthBendingSystem->seismicSlam(target);
             break;
     }
 }
