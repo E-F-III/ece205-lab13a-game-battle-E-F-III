@@ -23,7 +23,7 @@ class WaterBender : public PlayerCharacter {
         // Destructor: Essential cleanup when using raw pointers
         ~WaterBender();
         /// use bending system to perform a water bending action (REMOVED 'override' KEYWORD)
-        void performAction(); 
+    virtual void performAction(PlayerCharacter& target);
         
         /// Print WaterBender-specific stats in addition to base stats
         void printStats();
