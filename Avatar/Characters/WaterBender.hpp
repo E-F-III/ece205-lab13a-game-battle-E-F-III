@@ -6,10 +6,12 @@
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
 /// WaterBender is a derived class of PlayerCharacter. WaterBenders use water manipulation to fight enemies and protect allies.
 ///////////////////////////////////////////////////////////////////////////////
+
 #ifndef WATERBENDER_HPP
 #define WATERBENDER_HPP
 #include "PlayerCharacter.hpp"
 #include "../BendingSystem/Water_Bending.hpp" // CORRECT INCLUDE PATH
+#include <string>
 
 /// WaterBender: a profession derived from PlayerCharacter that specializes in water manipulation
 class WaterBender : public PlayerCharacter {
@@ -19,11 +21,12 @@ class WaterBender : public PlayerCharacter {
         
     public:
         /// Constructor:
-        explicit WaterBender(string& characterName, int& raceCode);
+        explicit WaterBender(std::string& characterName, int& raceCode);
         // Destructor: Essential cleanup when using raw pointers
         ~WaterBender();
-        /// use bending system to perform a water bending action (REMOVED 'override' KEYWORD)
-    virtual void performAction(PlayerCharacter& target);
+        
+        /// use bending system to perform a water bending action
+        virtual void performAction(PlayerCharacter& target);
         
         /// Print WaterBender-specific stats in addition to base stats
         void printStats();
