@@ -45,10 +45,10 @@ int main()
     // --- Create player character (runtime polymorphism) --- [cite: 8]
     PlayerCharacter* player = nullptr;
     switch (characterBendingStyle) {
-        case 0: player = new AirBender(characterName, characterRace);     break; [cite: 8]
-        case 1: player = new EarthBender(characterName, characterRace);    break; [cite: 9]
-        case 2: player = new FireBender(characterName, characterRace);  break; [cite: 9]
-        case 3: player = new WaterBender(characterName, characterRace); break; [cite: 10]
+         case 0: player = new AirBender(characterName, characterRace);   break;
+        case 1: player = new EarthBender(characterName, characterRace); break;
+        case 2: player = new FireBender(characterName, characterRace);  break;
+        case 3: player = new WaterBender(characterName, characterRace); break;
     }
 
     // --- INITIALIZE BOB (The Target) ---
@@ -59,9 +59,9 @@ int main()
 
     // --- Display stats and greet ---
     cout << endl;
-    player->printStats(); [cite: 11]
+    player->printStats(); 
     cout << endl;
-    player->greet(); [cite: 11]
+    player->greet(); 
 
     cout << "\n=== A wild BOB appears for target practice! ===" << endl;
     bob.printStats();
@@ -80,15 +80,14 @@ int main()
             break;
         }
 
-        cout << "\nWould you like to perform another action on Bob? (y/n): "; [cite: 12]
+        cout << "\nWould you like to perform another action on Bob? (y/n): "; 
         cin >> playAgain;
-    } [cite: 13]
+    } 
 
-    cout << "\nFarewell, " << characterName << "! Until next time." << endl; [cite: 13]
-
-    // Cleanup [cite: 14, 15]
-    delete player; 
-    player = nullptr;
+    cout << "\nFarewell, " << characterName << "! Until next time." << endl; 
+    
+    // Clean up
+    delete player;
 
     return 0;
 }
