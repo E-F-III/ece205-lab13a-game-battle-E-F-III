@@ -28,7 +28,7 @@ FireBender::~FireBender() {
 
 /// use bending system to perform a fire bending action
 void FireBender::performAction() {
-    int choice = 0;
+    int choice = -1;
     // Initialize choice variable for loop validation
     
     cout << "\nGame Master: What would you like " << name << " to do?" << endl;
