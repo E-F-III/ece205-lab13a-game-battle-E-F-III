@@ -1,4 +1,3 @@
-//  GNU nano 7.2                                                                                      AirBender.cpp
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
 //  Lab 13b - Game Character Class Part III (Polymorphism) - ECE 205 - Spring 2026
