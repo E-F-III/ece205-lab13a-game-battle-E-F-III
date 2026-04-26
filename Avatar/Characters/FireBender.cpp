@@ -4,7 +4,8 @@
 //
 /// @file    FireBender.cpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
-/// FireBender is a derived class of PlayerCharacter. FireBenders use fire manipulation to fight enemies and protect allies.
+/// FireBender is a derived class of PlayerCharacter.
+/// FireBenders use fire manipulation to fight enemies and protect allies.
 /////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
@@ -16,44 +17,46 @@ using namespace std;
 /// Constructor: initializes the fire bending system
 FireBender::FireBender(string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
     // Initialize fire bending system
-    fireBendingSystem = new FireBending(); 
+    fireBendingSystem = new FireBending();
 }
 
 // Destructor: Cleanup pointer to prevent memory leaks
 FireBender::~FireBender() {
-    delete fireBendingSystem; // Free memory allocated in constructor
+    delete fireBendingSystem;
+    // Free memory allocated in constructor
 }
 
 /// use bending system to perform a fire bending action
 void FireBender::performAction() {
-    int choice = 0; // Initialize choice variable for loop validation
+    int choice = 0;
+    // Initialize choice variable for loop validation
     
     cout << "\nGame Master: What would you like " << name << " to do?" << endl;
     fireBendingSystem->getAvailableBendingActions(*this); // Display available actions
     
     // Loop ensures the options 0-2 are selected (Validation)
     while (choice < 0 || choice > 2) { 
-        cout << "Enter the number corresponding to your choice (0=Burn, 1=Shield, 2=Flame): "; 
+        cout << "Enter the number corresponding to your choice (0=Blast, 1=Breath, 2=Lightning): ";
         cin >> choice; 
         
         if (choice < 0 || choice > 2) {
-            cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl; 
+            cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl;
         }
     }
     
     // Call the appropriate function in fireBendingSystem based on user selection.
     switch (choice) {
         case 0:
-            cout << "\n--- Action Selected: Fire Slash ---\n" << endl; 
-            fireBendingSystem->fireSlash(*this);   
+            cout << "\n--- Action Selected: Fire Blast ---\n" << endl;
+            fireBendingSystem->fireBlast(*this);   
             break;
         case 1:
-            cout << "\n--- Action Selected: Fire Shield ---\n" << endl;
-            fireBendingSystem->fireShield(*this);  
+            cout << "\n--- Action Selected: Fire Breath ---\n" << endl;
+            fireBendingSystem->fireBreath(*this);  
             break;
         case 2:
-            cout << "\n--- Action Selected: Flame Aura ---\n" << endl; 
-            fireBendingSystem->flameAura(*this);      
+            cout << "\n--- Action Selected: Lightning Strike ---\n" << endl;
+            fireBendingSystem->lightningStrike(*this);      
             break;
     }
 }

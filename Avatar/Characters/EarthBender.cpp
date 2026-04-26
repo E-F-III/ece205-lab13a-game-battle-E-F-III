@@ -2,60 +2,72 @@
 //  University of Hawaii, College of Engineering
 //  Lab 13b - Game Character Class Part III (Polymorphism) - ECE 205 - Spring 2026
 //
-/// @file    Earth_Bending.cpp
+/// @file    EarthBender.cpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
-///////////////////////////////////////////////////////////////////////////////
+/// EarthBender is a derived class of PlayerCharacter.
+/////////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
-#include "Earth_Bending.hpp"
+#include "./PlayerCharacter.hpp"
+#include "./EarthBender.hpp"
+#include "../BendingSystem/Earth_Bending.hpp"
 using namespace std;
 
 /// Constructor: initializes the earth bending system
-EarthBending::EarthBending() {
-    // No specific initialization required
-}
-// Earth Spike: a sharp spike of earth that can impale enemies
-void EarthBending::earthSpike(PlayerCharacter& character) {
-    cout << character.getName() << " performs Earth Spike! A sharp spike of earth shoots up to impale the enemy." << endl;
-    // Implementation of damage logic here
-    int targetHealth = character.getHealth();
-    cout << "\nEarth Spike hits!" << endl;
-    
-    // FIX APPLIED: The call syntax for rollDice is now correct because it's a static function.
-    // Note: Since the method is static, we call it using PlayerCharacter::rollDice()
-    int damage = PlayerCharacter::rollDice(5, 10); 
-    
-    // Update health via getter/setter to ensure specific instance update
-    character.setHealth(targetHealth - damage); 
-    
-    cout << "Earth Spike deals " << damage << " damage to " << character.getName() << endl; 
-}
-// Rock Shield: creates a sturdy shield of rock that can block attacks
-void EarthBending::rockShield(PlayerCharacter& character) {
-    cout << character.getName() << " creates a Rock Shield! A sturdy shield of rock forms to block incoming attacks." << endl;
-    // Implementation of defense logic here
-    cout << "\nRock Shield activates!" << endl;
-    character.setHealth(character.getHealth()); 
-}
-// Seismic Slam: slams the ground to create a shockwave that damages and knocks back enemies
-void EarthBending::seismicSlam(PlayerCharacter& character) {
-    cout << character.getName() << " performs Seismic Slam! They slam the ground, creating a shockwave that damages and knocks back enemies." << endl;
-    // Implementation of area damage and knockback logic here
-    int targetHealth = character.getHealth();
-    cout << "\nSeismic Slam hits!" << endl;
-    // FIX APPLIED: The call syntax for rollDice is now correct because it's a static function.
-    int damage = PlayerCharacter::rollDice(8, 15); 
-    
-    // Update health via getter/setter to ensure specific instance update
-    character.setHealth(targetHealth - damage); 
-    
-    cout << "Seismic Slam deals " << damage << " damage to " << character.getName() << endl; 
+EarthBender::EarthBender(string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
+    // Initialize earth bending system
+    earthBendingSystem = new EarthBending();
 }
 
-std::vector<std::string> EarthBending::getAvailableBendingActions(PlayerCharacter& character) {
-    vector<std::string> actions = {"Earth Spike", "Rock Shield", "Seismic Slam"};
-    cout << "Available Earth Bending Actions for " << character.getName() << ":" << endl;
-    for (size_t i = 0; i < actions.size(); ++i) {
-        cout << i << ": " << actions[i] << endl;
+// Destructor: Cleanup pointer to prevent memory leaks
+EarthBender::~EarthBender() {
+    delete earthBendingSystem;
+// Free memory allocated in constructor
+}
+
+/// use bending system to perform an earth bending action
+void EarthBender::performAction() {
+    int choice = 0;
+// Initialize choice variable for loop validation
+    
+    cout << "\nGame Master: What would you like " << name << " to do?" << endl;
+    earthBendingSystem->getAvailableBendingActions(*this); // Display available actions
+    
+    // Loop ensures the options 0-2 are selected (Validation)
+    while (choice < 0 || choice > 2) { 
+        cout << "Enter the number corresponding to your choice (0=Spike, 1=Shield, 2=Slam): ";
+        cin >> choice; 
+        
+        if (choice < 0 || choice > 2) {
+            cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl;
+        }
     }
-    return actions;
+    
+    // Call the appropriate function in earthBendingSystem based on user selection.
+    switch (choice) {
+        case 0:
+            cout << "\n--- Action Selected: Earth Spike ---\n" << endl;
+            earthBendingSystem->earthSpike(*this);   
+            break;
+        case 1:
+            cout << "\n--- Action Selected: Rock Shield ---\n" << endl;
+            earthBendingSystem->rockShield(*this);  
+            break;
+        case 2:
+            cout << "\n--- Action Selected: Seismic Slam ---\n" << endl;
+            earthBendingSystem->seismicSlam(*this);      
+            break;
+    }
+}
+
+/// Print EarthBender-specific stats in addition to base stats
+void EarthBender::printStats() {
+    PlayerCharacter::printStats();
+    cout << "Profession: EarthBender" << endl;
+    cout << "------------------------------------" << endl;
+}
+
+/// EarthBender-specific greeting
+void EarthBender::greet() const {
+    cout << name << " the EarthBender: Greetings! I am " << name << ". The earth is at my command, and I will use it to protect my allies" << endl;
 }

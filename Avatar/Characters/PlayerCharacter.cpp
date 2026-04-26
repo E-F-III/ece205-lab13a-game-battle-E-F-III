@@ -13,16 +13,17 @@
 #include "PlayerCharacter.hpp"
 
 using namespace std;
-
 /// generates random number btwn lower / upper limits 
 int PlayerCharacter::rollDice(int lower, int upper) {
 
-  random_device rd; /// non-deterministic random number 
+  random_device rd;
+  /// non-deterministic random number 
   ///rd: random number source providing inital randomness for different values
-  mt19937 engine(rd()); /// Mersenne Twister algorithm-based random number gen.
+  mt19937 engine(rd());
+  /// Mersenne Twister algorithm-based random number gen.
   /// engine produces the random number above
 
-  uniform_int_distribution<int> distribution(lower, upper); 
+  uniform_int_distribution<int> distribution(lower, upper);
   /// generate integer btwn lower and upper
 
   int result = distribution(engine);
@@ -38,10 +39,8 @@ int PlayerCharacter::rollDice(int lower, int upper) {
 // (since no race member) 
 PlayerCharacter::PlayerCharacter(string& characterName, int& bendingStyleCode) {
   setName(characterName);
-
   /// health automatically set to 100
   health = 100;
-
   ///generate random values between 0 and 10 using rollDice() for stats
   agility = rollDice(0, 10);
   defense = rollDice(0, 10);
@@ -49,7 +48,6 @@ PlayerCharacter::PlayerCharacter(string& characterName, int& bendingStyleCode) {
 
   /// take bending style from user and set it using setBendingStyle() method
   setBendingStyle(bendingStyleCode);
-
 }
 
 /// getters
@@ -75,24 +73,24 @@ PlayerCharacter::BendingStyle PlayerCharacter::getBendingStyle() {
     return bendingStyle;
 }
 
-///setters
-void PlayerCharacter::setHealth(int& newHealth) {
+///setters (Fixed to match header pass by value)
+void PlayerCharacter::setHealth(int newHealth) {
   health = newHealth;
 }
 
-void PlayerCharacter::setAgility(int& newAgility) {
+void PlayerCharacter::setAgility(int newAgility) {
   agility = newAgility;
 }
 
-void PlayerCharacter::setDefense(int& newDefense) {
+void PlayerCharacter::setDefense(int newDefense) {
   defense = newDefense;
 }
 
-void PlayerCharacter::setStrength(int& newStrength) {
+void PlayerCharacter::setStrength(int newStrength) {
   strength = newStrength;
 }
 
-void PlayerCharacter::setBendingStyle(int& newBendingStyle) {
+void PlayerCharacter::setBendingStyle(int newBendingStyle) {
     /// loops, keep asking for value for bending style until valid {0, 1, 2, 3}
   while (newBendingStyle < 0 || newBendingStyle > 3) {
 
@@ -129,7 +127,6 @@ void PlayerCharacter::printStats() {
   ///
   /// since order is same in array and enum
   string bendingStyleArray[4] = {"air", "earth", "fire", "water"};
-
   cout << "----------Stats for " << name << "----------" << endl;
   cout << "Name: " << name << endl;
   cout << "Bending Style: " << bendingStyleArray[bendingStyle] << endl; ///note use enum bendingStyle value as index of array declared above
@@ -147,6 +144,6 @@ void PlayerCharacter::greet() const {
 
 void PlayerCharacter::performAction() {
   cout << "I am performing an action!" << endl;
-   // cpp file
+// cpp file
 
 }
