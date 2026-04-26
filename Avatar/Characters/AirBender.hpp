@@ -10,19 +10,22 @@
 #define AIRBENDER_HPP
 #include "PlayerCharacter.hpp"
 #include "../BendingSystem/Air_Bending.hpp" // CORRECT INCLUDE PATH
+#include <string>
+
 /// AirBender: a profession derived from PlayerCharacter that specializes in air manipulation
 class AirBender : public PlayerCharacter {
     private:
         // Pointer to AirBending system for performing air bending actions
-        AirBending* airBendingSystem; 
+        AirBending* airBendingSystem;
         
     public:
         /// Constructor:
-        explicit AirBender(string& characterName, int& raceCode);
+        explicit AirBender(std::string& characterName, int& raceCode);
         // Destructor: Essential cleanup when using raw pointers
         ~AirBender();
+        
         /// use bending system to perform an air bending action (REMOVED 'override' KEYWORD)
-    virtual void performAction(PlayerCharacter& target);
+        virtual void performAction(PlayerCharacter& target);
         
         /// Print AirBender-specific stats in addition to base stats
         void printStats();
