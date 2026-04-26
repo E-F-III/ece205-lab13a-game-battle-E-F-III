@@ -22,7 +22,7 @@ class AirBender : public PlayerCharacter {
         // Destructor: Essential cleanup when using raw pointers
         ~AirBender();
         /// use bending system to perform an air bending action (REMOVED 'override' KEYWORD)
-        void performAction(); 
+    virtual void performAction(PlayerCharacter& target);
         
         /// Print AirBender-specific stats in addition to base stats
         void printStats();
