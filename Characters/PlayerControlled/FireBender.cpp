@@ -31,7 +31,7 @@ void FireBender::performAction(FighterCharacter& target) {
     int choice = -1;
     // Initialize choice variable for loop validation
     cout << "\nGame Master: What would you like " << name << " to do?" << endl;
-    fireBendingSystem->getAvailableBendingActions(target); // Display available actions
+    fireBendingSystem->getAvailableBendingActions(*this); // Display available actions
     
     // Loop ensures the options 0-2 are selected (Validation)
     while (choice < 0 || choice > 2) {
@@ -46,15 +46,15 @@ void FireBender::performAction(FighterCharacter& target) {
     switch (choice) {
         case 0:
             cout << "\n--- Action Selected: Fire Blast ---\n" << endl;
-            fireBendingSystem->fireBlast(target);
+            fireBendingSystem->fireBlast(*this, target);
             break;
         case 1:
             cout << "\n--- Action Selected: Fire Breath ---\n" << endl;
-            fireBendingSystem->fireBreath(target);
+            fireBendingSystem->fireBreath(*this, target);
             break;
         case 2:
             cout << "\n--- Action Selected: Lightning Strike ---\n" << endl;
-            fireBendingSystem->lightningStrike(target);
+            fireBendingSystem->lightningStrike(*this, target);
             break;
     }
 }
