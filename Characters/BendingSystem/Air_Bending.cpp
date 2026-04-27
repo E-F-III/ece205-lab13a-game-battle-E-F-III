@@ -16,29 +16,32 @@ AirBending::AirBending() {
 }
 
 // Air Slice: a quick, slicing gust of wind that can cut through enemies
-void AirBending::airSlice(FighterCharacter& character) {
+void AirBending::airSlice(FighterCharacter& character, FighterCharacter& 
+target) {
     cout << character.getName() << " performs Air Slice! A sharp gust of wind cuts through the enemy." << endl;
     // Implementation of damage logic
-    int targetHealth = character.getHealth();
+    int targetHealth = target.getHealth();
     cout << "\nAir Slice hits!" << endl;
     
     // Calculate damage: Diceroll between 5 and 10
     int damage = FighterCharacter::rollDice(5, 10); 
     
     // This sets the target health to damage dealt
-    character.setHealth(targetHealth - damage); 
+    target.setHealth(targetHealth - damage); 
     
     // Move statement
-    cout << "Air Slice deals " << damage << " damage to " << character.getName() << endl; 
+    cout << "Air Slice deals " << damage << " damage to " << 
+target.getName() << endl; 
 }
 
 // Air Shield: creates a swirling barrier of wind that protects and deflects attacks
-void AirBending::airShield(FighterCharacter& character) {
+void AirBending::airShield(FighterCharacter& character,FighterCharacter& target) {
     cout << character.getName() << " creates an Air Shield! A swirling barrier of wind protects them from incoming attacks." << endl;
     // Implement defense logic here
-    cout << "\nAir Shield activates!" << endl;
+    cout << "\nAir Shield activates!" << "Protects" << target.getName() << endl;
     // Blocks all damage
-    character.setHealth(character.getHealth());
+    // Below is stubbed out will implement shields later. 
+    // character.setHealth(character.getHealth());
 }
 
 // Flight: allows the character to take to the skies, increasing mobility and evasion

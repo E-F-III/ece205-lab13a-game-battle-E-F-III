@@ -31,7 +31,7 @@ void AirBender::performAction(FighterCharacter& target) {
     // Initialize choice variable for loop validation
     cout << "\nGame Master: What would you like " << name << " to do?"
          << endl;
-    airBendingSystem->getAvailableBendingActions(target); // Display available options
+    airBendingSystem->getAvailableBendingActions(*this); // Display available options
     
     // Loop ensured the options 0-2 are selected (Input Validation)
     while (choice < 0 || choice > 2) {
@@ -48,16 +48,16 @@ void AirBender::performAction(FighterCharacter& target) {
     switch (choice) {
         case 0:
             cout << "\n--- Action Selected: Air Slice ---\n" << endl;
-            airBendingSystem->airSlice(target);
+            airBendingSystem->airSlice(*this,target);
             // Passing target reference to modify health
             break;
         case 1:
             cout << "\n--- Action Selected: Air Shield ---\n" << endl;
-            airBendingSystem->airShield(target); // Passing target reference to modify health
+            airBendingSystem->airShield(*this, target); // Passing target reference to modify health
             break;
         case 2:
             cout << "\n--- Action Selected: Flight ---\n" << endl;
-            airBendingSystem->flight(target);
+            airBendingSystem->flight(*this);
             break;
     }
 }

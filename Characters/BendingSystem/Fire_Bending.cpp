@@ -16,32 +16,32 @@ FireBending::FireBending() {
 }
 
 // Fire Blast: a powerful blast of fire that can burn enemies
-void FireBending::fireBlast(FighterCharacter& character) {
+void FireBending::fireBlast(FighterCharacter& character, FighterCharacter& target) {
     cout << "\nFire Blast hits!" << endl;
     
     // Calculate damage: Medium range for fire blast
     int damage = FighterCharacter::rollDice(7, 12); 
     
     // Update health via getter/setter to ensure specific instance update
-    character.setHealth(character.getHealth() - damage); 
+    target.setHealth(target.getHealth() - damage); 
     
-    cout << "Fire Blast deals " << damage << " damage to " << character.getName() << endl; 
+    cout << "Fire Blast deals " << damage << " damage to " << target.getName() << endl; 
 }
 
 // Fire Breath: the character exhales a cone of fire that can damage multiple enemies
-void FireBending::fireBreath(FighterCharacter& character) {
+void FireBending::fireBreath(FighterCharacter& character, FighterCharacter& target) {
     // Area damage logic here (applied to current target for simplicity in this game)
     cout << "\nFire Breath activates!" << endl;
     
     // Calculate area damage: Cone of fire deals moderate damage
     int damage = FighterCharacter::rollDice(6, 11); 
     
-    character.setHealth(character.getHealth() - damage);
-    cout << "Fire Breath deals " << damage << " damage to " << character.getName() << endl; 
+    target.setHealth(target.getHealth() - damage);
+    cout << "Fire Breath deals " << damage << " damage to " << target.getName() << endl; 
 }
 
 // Lightning Strike: the character generates a bolt of lightning that can strike a single enemy with high damage
-void FireBending::lightningStrike(FighterCharacter& character) {
+void FireBending::lightningStrike(FighterCharacter& character, FighterCharacter& target) {
     // High damage logic here (modified to interact with passed player ref)
     cout << "\nLightning Strike hits!" << endl;
     
@@ -49,9 +49,9 @@ void FireBending::lightningStrike(FighterCharacter& character) {
     int damage = FighterCharacter::rollDice(12, 20); 
     
     // Update health via getter/setter to ensure specific instance update
-    character.setHealth(character.getHealth() - damage); 
+    target.setHealth(target.getHealth() - damage); 
     
-    cout << "Lightning Strike deals " << damage << " damage to " << character.getName() << endl; 
+    cout << "Lightning Strike deals " << damage << " damage to " << target.getName() << endl; 
 }
 
 std::vector<std::string> FireBending::getAvailableBendingActions(FighterCharacter& character) {
