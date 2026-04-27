@@ -1,63 +1,83 @@
-# ==============================================================================
-# Makefile for ATLA RPG Project (ECE 205)
-# Author: Edward Felipe III
-# ==============================================================================
+# ===========================================================
+# Makefile for ECE205 Lab 13a - Game Battle
+# ===========================================================
 
-# Compiler and Flags
 CXX      := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra -pedantic -g
-# Include directories: '.' for root, and specific subdirectories for headers
-INCLUDES := -I. -IAvatar/Characters -IAvatar/BendingSystem
+CXXFLAGS := -Wall -Wextra -std=c++17 -g
 
-# Target Executable Name
-TARGET   := main
-
-# Directory Structure
-SRC_DIR  := .
-CHAR_DIR := Avatar/Characters
-BEND_DIR := Avatar/BendingSystem
+TARGET   := game_battle
 OBJ_DIR  := obj
 
-# Source Files
-SRCS := $(SRC_DIR)/main.cpp \
-        $(CHAR_DIR)/GameCharacter.cpp \
-        $(CHAR_DIR)/PlayerCharacter.cpp \
-        $(CHAR_DIR)/AirBender.cpp \
-        $(CHAR_DIR)/EarthBender.cpp \
-        $(CHAR_DIR)/FireBender.cpp \
-        $(CHAR_DIR)/WaterBender.cpp \
-        $(BEND_DIR)/Bending_System.cpp \
-        $(BEND_DIR)/Air_Bending.cpp \
-        $(BEND_DIR)/Earth_Bending.cpp \
-        $(BEND_DIR)/Fire_Bending.cpp \
-        $(BEND_DIR)/Water_Bending.cpp
+# ===========================================================
+# Source files
+# ===========================================================
+SRCS := main.cpp \
+        Characters/GameCharacter.cpp \
+        Characters/FighterCharacter.cpp \
+        Characters/BendingSystem/Air_Bending.cpp \
+        Characters/BendingSystem/Bending_System.cpp \
+        Characters/BendingSystem/Earth_Bending.cpp \
+        Characters/BendingSystem/Fire_Bending.cpp \
+        Characters/BendingSystem/Water_Bending.cpp \
+        Characters/PlayerControlled/AirBender.cpp \
+        Characters/PlayerControlled/EarthBender.cpp \
+        Characters/PlayerControlled/FireBender.cpp \
+        Characters/PlayerControlled/PlayerCharacter.cpp \
+        Characters/PlayerControlled/WaterBender.cpp \
+        Characters/NPC/NPCAirBender.cpp \
+        Characters/NPC/NPCEarthBender.cpp \
+        Characters/NPC/NPCFireBender.cpp \
+        Characters/NPC/NPCharacter.cpp \
+        Characters/NPC/NPCWaterBender.cpp
 
-# Object Files (maps .cpp to .o in the OBJ_DIR)
-OBJS := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
+# ===========================================================
+# Object files (mirrors source paths under obj/)
+# ===========================================================
+OBJS := $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
-# Default Rule
-all: $(TARGET)
+# Include paths
+INCLUDES := -I. \
+            -ICharacters \
+            -ICharacters/BendingSystem \
+            -ICharacters/PlayerControlled \
+            -ICharacters/NPC
 
-# Link the Executable
+# ===========================================================
+# Default target
+# ===========================================================
+all: $(OBJ_DIR) $(TARGET)
+
 $(TARGET): $(OBJS)
-	@echo "Linking: $@"
-	@$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@
-	@echo "Build Successful!"
+	$(CXX) $(CXXFLAGS) -o $@ $^
+	@echo "Build successful: ./$(TARGET)"
 
-# Compile Source Files into Object Files
+# ===========================================================
+# Compile rules — create obj subdirs as needed
+# ===========================================================
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	@echo "Compiling: $<"
-	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-# Clean Up Build Artifacts
-clean:
-	@echo "Cleaning up..."
-	@rm -rf $(OBJ_DIR) $(TARGET)
-	@echo "Done."
+# Create top-level obj dir
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-# Run the Game
-run: all
+# ===========================================================
+# Run the program
+# ===========================================================
+run: $(TARGET)
 	./$(TARGET)
 
-.PHONY: all clean run
+# ===========================================================
+# Remove build artifacts
+# ===========================================================
+clean:
+	rm -rf $(OBJ_DIR) $(TARGET)
+	@echo "Cleaned up build artifacts."
+
+# ===========================================================
+# Rebuild from scratch
+# ===========================================================
+rebuild: clean all
+
+.PHONY: all run clean rebuild
