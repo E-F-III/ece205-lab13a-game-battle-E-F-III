@@ -17,49 +17,70 @@
 #include "./Avatar/Characters/FireBender.hpp"
 #include "./Avatar/Characters/WaterBender.hpp"
 
+// INCLUDE NPC HEADER FILES: (ignore red lines)
+
+#include "NPCAirBender.hpp"
+#include "NPCEarthBender.hpp"
+#include "NPCFireBender.hpp"
+#include "NPCWaterBender.hpp"
+
+
+
+
+
 using namespace std;
 
-// createCharacter: creates a playable characetr or enemy: 
+// -- helper functions --
 
-PlayerCharacter* createCharacter(std::string label)
-{
+// createCharacter: were going to create a character
+
+PlayerCharacter* createCharacter(std::string label) {
     std::string characterName;
-    int characterRace;
-    int characterBendingStyle;
-    // enter the name 
-    std::cout << "\nEnter a name for " << label << ": ";
-    std::cin.ignore();
-    std::getline(std::cin, characterName);
-    // WE ARE REMOVING THE FISHMANS, GIANT, DWARF @TODO REMOVE THIS 
-    std::cout << "Enter a race for " << label
-              << " (0 = Human, 1 = Fishman, 2 = Giant, 3 = Dwarf): ";
-    std::cin >> characterRace;
-    // CHOOSE A BENDING STYLE
-    std::cout << "Enter a bending style for " << label
-              << " (0 = Air, 1 = Earth, 2 = Fire, 3 = Water): ";
-    std::cin >> characterBendingStyle;
-    // error check
-    while (characterBendingStyle < 0 || characterBendingStyle > 3) {
-        std::cout << "Invalid! Enter 0 = Air, 1 = Earth, 2 = Fire, 3 = Water: ";
-        std::cin >> characterBendingStyle;
-    }
-    // point to nullptr to remove temp data
-    PlayerCharacter* character = nullptr;
+    int bendingCode; // bring code for Bending 
+    
+    std::cout << "\nEnter a name for " << label << ": "; // user enters name for their character 
+    std::cin.ignore(1000, '\n'); // Clear buffer properly
+    std::getline(std::cin, characterName); // sprint name 
 
-    switch (characterBendingStyle) {
-        case 0: character = new AirBender(characterName, characterRace); break;
-        case 1: character = new EarthBender(characterName, characterRace); break;
-        case 2: character = new FireBender(characterName, characterRace); break;
-        case 3: character = new WaterBender(characterName, characterRace); break;
+    std::cout << "Enter a bending style (0=Air, 1=Earth, 2=Fire, 3=Water): "; // user chooses  a bending style 
+    while (!(std::cin >> bendingCode) || bendingCode < 0 || bendingCode > 3) { // error check
+        std::cout << "Invalid! Enter 0-3: ";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
     }
 
+    PlayerCharacter* character = nullptr; // point to null value to erase cache
+    switch (bendingCode) {
+        case 0: character = new AirBender(characterName, bendingCode); break; // AIRBENDER 
+        case 1: character = new EarthBender(characterName, bendingCode); break; // EARTHBENDER 
+        case 2: character = new FireBender(characterName, bendingCode); break; // FIREBENDER 
+        case 3: character = new WaterBender(characterName, bendingCode); break; // WATERBENDER 
+    }
+    // .... printStats and Greet()
+    if (character) { 
+        character->printStats();
+        character->greet();
+    }
     return character;
 }
 
 
+// NPC implementation; create a NPC, max 4 types
 
+NPCharacter* createNPC(std::string label) {
+    int bendingCode = rand() % 4;
+    NPCharacter* character = nullptr;
 
-// partyAlive: checks health for the party
+    switch (bendingCode) {
+        case 0: character = new NPCAirBender(label, bendingCode); break;
+        case 1: character = new NPCEarthBender(label, bendingCode); break;
+        case 2: character = new NPCFireBender(label, bendingCode); break;
+        case 3: character = new NPCWaterBender(label, bendingCode); break;
+    }
+    return character;
+}
+
+// partyAlive: checks health for the party @TODO EFiii, check this please
 bool partyAlive(std::vector<PlayerCharacter*> party)
 {
     for (PlayerCharacter* character : party) {
@@ -74,25 +95,15 @@ bool partyAlive(std::vector<PlayerCharacter*> party)
 
 // void displayHealth: shows each players health 
 
-void displayHealth(std::vector<PlayerCharacter*> players,
-                   std::vector<PlayerCharacter*> enemies) 
-{
-    std::cout << "\n========== HEALTH STATUS ==========" << std::endl;
-
+void displayHealth(const std::vector<FighterCharacter*>& players, const std::vector<FighterCharacter*>& enemies) {
+    std::cout << "\n========== HEALTH STATUS ==========\n";
     std::cout << "Players:\n";
-    for (PlayerCharacter* p : players) { //iterate through players
-        std::cout << p->getName()
-                  << " Health: " << p->getHealth() << std::endl;
-    }
-
+    for (auto p : players) std::cout << " - " << p->getName() << ": " << p->getHealth() << "\n";
     std::cout << "\nEnemies:\n";
-    for (PlayerCharacter* e : enemies) { //iterate through enemies 
-        std::cout << e->getName()
-                  << " Health: " << e->getHealth() << std::endl;
-    }
-
-    std::cout << "===================================" << std::endl;
+    for (auto e : enemies) std::cout << " - " << e->getName() << ": " << e->getHealth() << "\n";
+    std::cout << "===================================\n";
 }
+
 
 
 // void attackTarget: attacks the player
