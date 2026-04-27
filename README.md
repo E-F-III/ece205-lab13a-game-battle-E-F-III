@@ -1,72 +1,68 @@
-# Lab 12b - Game Character Class Part III (Polymorphism)
+# Lab 13a - Let the Battle Begin!
 **ECE 205 - Spring 2026**  
-**Author:** Edward Felipe III <efelipe3@hawaii.edu>
-
+**Authors:** Edward Felipe III <efelipe3@hawaii.edu>, Steven Javier <sdjavier@hawaii.edu>, Menden Cannistra <mendenc@hawaii.edu>
 ---
 
 ## Overview
-This project extends the `PlayerCharacter` base class using polymorphism. Four profession subclasses have been implemented, each overriding `performAction()` to provide unique character behaviors based on their profession.
-
+This project focused on implementing containers to track characters within a turn based battle system.
 ---
 
 ## Class Hierarchy
 
-```
+``` 
 GameCharacter
-└── PlayerCharacter
-    ├── Bard
-    ├── Rogue
-    ├── Paladin
-    └── Sorcerer
+└── FighterCharacter
+    ├── PlayerCharacter
+        ├── Airbender 
+        ├── Waterbender
+        ├── Earthbender
+        └── Firebender
+    ├── NPCharacter
+        ├── NPCAirbender
+        ├── NPCWaterbender
+        ├── NPCEarthbender
+        ├── NPCFirebender
 ```
 
 ---
 
 ## Subclass Descriptions
 
-### Bard
-Bards are charismatic performers who use inspiration and illusions to support allies and confuse enemies.
+### GameCharacter
+The base class for all characters in the game. It provides basic functionality such as setting and getting the character's name, and methods for greeting and speaking.
 
-| Member | Type | Description |
-|---|---|---|
-| `inspirationUses` | `int` | Number of inspiration uses remaining before rest |
-| `minorIllusion()` | method | Creates a weak illusion to distract an enemy |
-| `viciousMockery()` | method | Insults an enemy, potentially causing self-damage and disadvantage on their next attack |
-| `encore()` | method | Repeats the most recent spell with increased strength, costs 1 inspiration use |
+### FighterCharacter
+Derived from GameCharacter, this class represents characters capable of combat. It includes attributes like health, strength, agility, defense, and a bending style. FighterCharacters can perform actions against other characters and have methods to roll dice for combat resolution.
 
----
+### PlayerCharacter
+A subclass of FighterCharacter representing characters controlled by the player. It overrides the greet method and performAction to allow player-driven decisions in battles.
 
-### Rogue
-Rogues are cunning thieves who rely on stealth to ambush enemies, disguise themselves, and bypass locks.
+### Airbender
+A player-controlled character specializing in air bending. Airbenders can manipulate air for attacks like air slices, defensive shields, and flight. They inherit from PlayerCharacter and use the AirBending system for their abilities.
 
-| Member | Type | Description |
-|---|---|---|
-| `stealth` | `int` | Efficiency at performing attacks without being caught |
-| `sneakAttack()` | method | Deals 2x damage if the Rogue's stealth is high enough to remain hidden |
-| `disguiseSelf()` | method | Wears a disguise to temporarily increase stealth stat |
-| `pickLock()` | method | Attempts to unlock a locked item without a key |
+### Waterbender
+A player-controlled character specializing in water bending. Waterbenders manipulate water for healing, defensive barriers, and offensive strikes. They use the WaterBending system.
 
----
+### Earthbender
+A player-controlled character specializing in earth bending. Earthbenders control earth and stone for powerful defensive walls and ground-based attacks. They utilize the EarthBending system.
 
-### Paladin
-Paladins are holy warriors whose divine aura strengthens nearby allies and empowers their attacks.
+### Firebender
+A player-controlled character specializing in fire bending. Firebenders generate and control fire for intense offensive attacks and explosive abilities. They employ the FireBending system.
 
-| Member | Type | Description |
-|---|---|---|
-| `auraStrength` | `int` | Increases nearby allies' defensive stats and scales ability power |
-| `layOnHands()` | method | Heals an ally; heal amount scales with auraStrength |
-| `smite()` | method | Deals holy damage to an enemy; damage scales with auraStrength |
+### NPCharacter
+A subclass of FighterCharacter for non-player characters (NPCs). NPCs are controlled by the game's AI and can be allies or enemies. They have their own greeting and action logic.
 
----
+### NPCAirBender
+An NPC version of the Airbender. These characters use air bending abilities autonomously in battles, controlled by AI logic.
 
-### Sorcerer
-Sorcerers channel raw magical energy through sorcery points to cast devastating spells and enhance their magic.
+### NPCWaterBender
+An NPC version of the Waterbender. They perform water bending actions as part of the game's automated combat system.
 
-| Member | Type | Description |
-|---|---|---|
-| `sorceryPoints` | `int` | Required resource consumed when performing spells |
-| `fireball()` | method | Hurls a ball of fire at an enemy; costs 2 sorcery points |
-| `metaMagic()` | method | Consumes 1 sorcery point to empower the next spell with a damage bonus |
+### NPCEarthBender
+An NPC version of the Earthbender. These NPCs utilize earth bending for AI-driven combat maneuvers.
+
+### NPCFireBender
+An NPC version of the Firebender. They execute fire bending attacks and defenses under AI control.
 
 ---
 
@@ -83,7 +79,7 @@ make
 
 ### Run
 ```bash
-./lab12b
+./game_battle
 ```
 
 ### Clean
@@ -94,35 +90,3 @@ make clean
 ---
 
 ## Sample Interaction
-
-```
-Enter a name for your character: Bob
-Enter a race for your character (0 = Human, 1 = Fishman, 2 = Giant, 3 = Dwarf): 0
-Enter a profession (0 = Bard, 1 = Rogue, 2 = Paladin, 3 = Sorcerer): 3
-
-----------Stats for Bob----------
-Name: Bob
-Race: human
-Health: 100
-Strength: 7
-Agility: 4
-Defense: 6
-------------------------------------
-Profession: Sorcerer
-Sorcery Points: 8
-------------------------------------
-
-Bob the Sorcerer: I am Bob. Magic flows through my veins — step aside.
-
-Game Master: What would you like Bob to do?
-(0 = Fireball, 1 = Meta Magic): 0
-
-Bob hurls a blazing fireball at the enemy!
-You need to roll at least a 5 to hit.
-You rolled a 9. Boom! The fireball connects for 11 fire damage!
-Sorcery points remaining: 6
-
-Would you like to perform another action? (y/n): n
-
-Farewell, Bob! Until next time.
-```
