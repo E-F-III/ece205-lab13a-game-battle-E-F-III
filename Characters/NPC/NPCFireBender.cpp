@@ -35,15 +35,15 @@ void NPCFireBender::performAction(FighterCharacter& target) {
     switch (choice) {
         case 0:
             cout << "\n--- Action Selected: Fire Blast ---\n" << endl;
-            fireBendingSystem->fireBlast(target);
+            fireBendingSystem->fireBlast(*this, target);
             break;
         case 1:
             cout << "\n--- Action Selected: Fire Breath ---\n" << endl;
-            fireBendingSystem->fireBreath(target);
+            fireBendingSystem->fireBreath(*this, target);
             break;
         case 2:
             cout << "\n--- Action Selected: Lightning Strike ---\n" << endl;
-            fireBendingSystem->lightningStrike(target);
+            fireBendingSystem->lightningStrike(*this, target);
             break;
     }
 }

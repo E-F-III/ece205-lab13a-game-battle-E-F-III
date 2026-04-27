@@ -34,15 +34,15 @@ void NPCAirBender::performAction(FighterCharacter& target) {
     switch (choice) {
         case 0:
             cout << "\n--- Action Selected: Air Slice ---\n" << endl;
-            airBendingSystem->airSlice(target);
+            airBendingSystem->airSlice(*this, target);
             break;
         case 1:
             cout << "\n--- Action Selected: Air Shield ---\n" << endl;
-            airBendingSystem->airShield(target);
+            airBendingSystem->airShield(*this, target);
             break;
         case 2:
             cout << "\n--- Action Selected: Air Gust ---\n" << endl;
-            airBendingSystem->flight(target);
+            airBendingSystem->flight(*this);
             break;
     }
 }

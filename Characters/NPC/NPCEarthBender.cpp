@@ -35,15 +35,15 @@ void NPCEarthBender::performAction(FighterCharacter& target) {
     switch (choice) {
         case 0:
             cout << "\n--- Action Selected: Earth Spike ---\n" << endl;
-            earthBendingSystem->earthSpike(target);
+            earthBendingSystem->earthSpike(*this, target);
             break;
         case 1:
             cout << "\n--- Action Selected: Rock Shield ---\n" << endl;
-            earthBendingSystem->rockShield(target);
+            earthBendingSystem->rockShield(*this, target);
             break;
         case 2:
             cout << "\n--- Action Selected: Seismic Slam ---\n" << endl;
-            earthBendingSystem->seismicSlam(target);
+            earthBendingSystem->seismicSlam(*this, target);
             break;
     }
 }
