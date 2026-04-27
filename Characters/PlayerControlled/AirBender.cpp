@@ -14,10 +14,11 @@ using namespace std;
 
 // --- Constructor and Destructor --- 
 /// Constructor: initializes the air bending system
-AirBender::AirBender(std::string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
+AirBender::AirBender(const std::string& characterName, const int& raceCode)
+    : PlayerCharacter(characterName, raceCode) {
     airBendingSystem = new AirBending();
-    // Initialize the air bending system pointer
 }
+
 
 // Destructor: This MUST be defined to clean up memory allocated in the constructor.
 AirBender::~AirBender() {
