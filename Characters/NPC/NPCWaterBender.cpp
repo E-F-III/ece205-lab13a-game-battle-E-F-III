@@ -49,13 +49,13 @@ void NPCWaterBender::performAction(FighterCharacter& target) {
 }
 
 /// Print WaterBender-specific stats in addition to base stats
-void WaterBender::printStats() {
+void NPCWaterBender::printStats() {
     NPCharacter::printStats();
     cout << "Profession: WaterBender" << endl;
     cout << "------------------------------------" << endl;
 }
 
 /// WaterBender-specific greeting
-void WaterBender::greet() const {
+void NPCWaterBender::greet() const {
     cout << name << " the WaterBender: Greetings! I am " << name << ". The water is at my command, and I will use it to protect my allies" << endl;
 }

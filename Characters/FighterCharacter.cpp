@@ -32,6 +32,10 @@ FighterCharacter::FighterCharacter(std::string& name, int& styleCode) : GameChar
     setBendingStyle(styleCode); // Set the style only for fighters.
 }
 
+FighterCharacter::~FighterCharacter() {
+    // Virtual destructor implementation
+}
+
 void FighterCharacter::setBendingStyle(int choice) {
     switch (choice) {
         case 0: bendingStyle = air; break;
@@ -41,11 +45,53 @@ void FighterCharacter::setBendingStyle(int choice) {
     }
 }
 
+// Getters
+int FighterCharacter::getHealth() {
+    return health;
+}
+
+int FighterCharacter::getStrength() {
+    return strength;
+}
+
+int FighterCharacter::getAgility() {
+    return agility;
+}
+
+int FighterCharacter::getDefense() {
+    return defense;
+}
+
+BendingStyle FighterCharacter::getBendingStyle() {
+    return bendingStyle;
+}
+
+// Setters
+void FighterCharacter::setHealth(int health) {
+    this->health = health;
+}
+
+void FighterCharacter::setStrength(int strength) {
+    this->strength = strength;
+}
+
+void FighterCharacter::setAgility(int agility) {
+    this->agility = agility;
+}
+
+void FighterCharacter::setDefense(int defense) {
+    this->defense = defense;
+}
+
 void FighterCharacter::printStats() {
     std::string styleNames[] = {"Air", "Earth", "Fire", "Water"};
     std::cout << "--- " << name << " Stats ---" << std::endl;
     std::cout << "Bending: " << styleNames[bendingStyle] << std::endl;
     std::cout << "Health: " << health << std::endl;
+}
+
+void FighterCharacter::greet() const {
+    std::cout << "Greetings, I am " << name << ", a " << (bendingStyle == air ? "Air" : bendingStyle == earth ? "Earth" : bendingStyle == fire ? "Fire" : "Water") << " bender!" << std::endl;
 }
 
 // perform action is a placeholder for now, but it will be the main function that handles combat logic and interactions with other characters.

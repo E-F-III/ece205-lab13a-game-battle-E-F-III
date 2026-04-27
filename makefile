@@ -27,7 +27,7 @@ SRCS := main.cpp \
         Characters/NPC/NPCAirBender.cpp \
         Characters/NPC/NPCEarthBender.cpp \
         Characters/NPC/NPCFireBender.cpp \
-        Characters/NPC/NPCCharacter.cpp \
+        Characters/NPC/NPCharacter.cpp \
         Characters/NPC/NPCWaterBender.cpp
 
 # ===========================================================

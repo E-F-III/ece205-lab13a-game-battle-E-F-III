@@ -26,7 +26,7 @@ class FighterCharacter : public GameCharacter {
     public:
         FighterCharacter(std::string& characterName, int& bendingStyleCode);
 
-        virtual ~FighterCharacter() = default; // Virtual destructor for proper cleanup of derived classes
+        virtual ~FighterCharacter(); // Virtual destructor for proper cleanup of derived classes
 
         // Getters
         int getHealth();

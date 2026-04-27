@@ -20,10 +20,10 @@ using namespace std;
 /// takes in address of name from user and int corresponding to race
 /// inherited from GameCharacter, note only the setName() member is used,
 // (since no race member)
-NPCharacter::NPCCharacter(string& characterName, int& bendingStyleCode) {
-    setName(characterName);
-    /// use FighterCharacter constructor to initialize stats and bending style
-    FighterCharacter(characterName, bendingStyleCode);
+NPCharacter::NPCharacter(string& characterName, int& bendingStyleCode) 
+    : FighterCharacter(characterName, bendingStyleCode) 
+{
+    // No extra logic for now, but you could add NPC-specific initialization here if needed
 }
 
 ///greeting using the name of PlayerCharacter

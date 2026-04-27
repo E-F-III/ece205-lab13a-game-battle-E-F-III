@@ -17,8 +17,7 @@
 class NPCharacter : public FighterCharacter {
     public:
         // NPCs often use the same base constructor logic
-        NPCharacter(std::string& characterName, int& bendingStyleCode)
-            : FighterCharacter(characterName, bendingStyleCode) {}
+        NPCharacter(std::string& characterName, int& bendingStyleCode);
 
         virtual ~NPCharacter() = default;
 
