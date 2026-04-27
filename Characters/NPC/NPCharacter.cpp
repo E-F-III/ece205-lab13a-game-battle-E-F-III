@@ -32,5 +32,5 @@ void NPCharacter::greet() const {
 }
 
 void NPCharacter::performAction(FighterCharacter& target) {
-    cout << "I am performing an action!" << endl;
+    cout << "I am performing an action on " << target.getName() << "!" << endl;
 }
