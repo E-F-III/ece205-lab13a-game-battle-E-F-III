@@ -103,7 +103,32 @@ void displayHealth(const std::vector<FighterCharacter*>& players, const std::vec
     std::cout << "===================================\n";
 }
 
+// Unified attack logic using the base class FighterCharacter
+void performTurn(FighterCharacter* attacker, std::vector<FighterCharacter*>& allies, std::vector<FighterCharacter*>& enemies, bool isNPC) {
+    if (attacker->getHealth() <= 0) return;
 
+    std::cout << "\n>> " << attacker->getName() << "'s turn!\n";
+
+    if (isNPC) {
+        // Simple NPC AI: Attack first living player
+        for (auto target : enemies) {
+            if (target->getHealth() > 0) {
+                attacker->performAction(*target);
+                break;
+            }
+        }
+    } else {
+        // Player Manual Choice
+        int targetIdx;
+        std::cout << "Choose an enemy to attack (0-" << enemies.size()-1 << "): ";
+        std::cin >> targetIdx;
+        if (targetIdx >= 0 && targetIdx < enemies.size() && enemies[targetIdx]->getHealth() > 0) {
+            attacker->performAction(*enemies[targetIdx]);
+        } else {
+            std::cout << "Invalid target or target already dead! Turn skipped.\n";
+        }
+    }
+}
 
 // void attackTarget: attacks the player
 
