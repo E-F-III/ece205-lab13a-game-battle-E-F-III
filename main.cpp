@@ -150,7 +150,7 @@ void performTurn(FighterCharacter *attacker, vector<FighterCharacter *> &allies,
             random_target_idx = rand() % enemies.size();
         }
 
-        attacker->performAction(*attacker, *enemies[random_target_idx]);
+        attacker->performAction(*enemies[random_target_idx]);
     }
     else
     {
@@ -181,7 +181,7 @@ void performTurn(FighterCharacter *attacker, vector<FighterCharacter *> &allies,
                 cin.clear();
                 cin.ignore(1000, '\n');
             }
-            attacker->performAction(*attacker, *enemies[targetIdx]);
+            attacker->performAction(*enemies[targetIdx]);
             break;
         case 1:
             cout << "Choose an ally to support (not implemented yet, so this will just skip the turn):\n";
