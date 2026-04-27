@@ -2,9 +2,9 @@
 //  University of Hawaii, College of Engineering
 //  Lab 13b - Game Character Class Part III (Polymorphism) - ECE 205 - Spring 2026
 //
-/// @file    WaterBender.hpp
+/// @file    WaterBender.cpp
 /// @author  Edward Felipe III <efelipe3@hawaii.edu>
-/// WaterBender is a derived class of PlayerCharacter. WaterBenders use water manipulation to fight enemies and protect allies.
+/// WaterBender is a derived class of PlayerCharacter.
 /////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
@@ -16,19 +16,47 @@ using namespace std;
 
 /// Constructor: initializes the water bending system
 WaterBender::WaterBender(std::string& characterName, int& raceCode) : PlayerCharacter(characterName, raceCode) {
-    waterBendingSystem = new WaterBending(); // Initialize the water bending system
+    // Initialize water bending system
+    waterBendingSystem = new WaterBending();
+}
+
+// Destructor: Cleanup pointer to prevent memory leaks
+WaterBender::~WaterBender() {
+    delete waterBendingSystem;
+    // Free memory allocated in constructor
 }
 
 /// use bending system to perform a water bending action
-void WaterBender::performAction() {
-    int choice;
+void WaterBender::performAction(PlayerCharacter& target) {
+    int choice = -1;
+    // Initialize choice variable for loop validation
     cout << "\nGame Master: What would you like " << name << " to do?" << endl;
-    waterBendingSystem->getAvailableBendingActions(*this); // Display available water bending actions
-    cout << "Enter the number corresponding to your choice: ";
-    cin >> choice;  
-
-    ///@Mendencan: The logic for performing the chosen water bending action would go here. 
-    ///@Mendencan: adjust the code to use pointers to the water bending system and call the appropriate method based on the user's choice. For example:
+    waterBendingSystem->getAvailableBendingActions(target); // Display available actions
+    
+    // Loop ensures the options 0-2 are selected (Validation)
+    while (choice < 0 || choice > 2) {
+        cout << "Enter the number corresponding to your choice (0=Healing, 1=Whip, 2=Barrier): ";
+        cin >> choice;
+        if (choice < 0 || choice > 2) {
+            cout << "Invalid input! Please enter a number between 0 and 2.\n" << endl;
+        }
+    }
+    
+    // Call the appropriate function in waterBendingSystem based on user selection.
+    switch (choice) {
+        case 0:
+            cout << "\n--- Action Selected: Healing Waters ---\n" << endl;
+            waterBendingSystem->healingWaters(target);
+            break;
+        case 1:
+            cout << "\n--- Action Selected: Water Whip ---\n" << endl;
+            waterBendingSystem->waterWhip(target);
+            break;
+        case 2:
+            cout << "\n--- Action Selected: Ice Barrier ---\n" << endl;
+            waterBendingSystem->iceBarrier(target);
+            break;
+    }
 }
 
 /// Print WaterBender-specific stats in addition to base stats
@@ -40,5 +68,5 @@ void WaterBender::printStats() {
 
 /// WaterBender-specific greeting
 void WaterBender::greet() const {
-    cout << name << " the WaterBender: Greetings! I am " << name << ". The waters are at my command, and I will use them to protect my allies" << endl;   
+    cout << name << " the WaterBender: Greetings! I am " << name << ". The water is at my command, and I will use it to protect my allies" << endl;
 }

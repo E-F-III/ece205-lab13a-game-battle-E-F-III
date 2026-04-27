@@ -39,6 +39,3 @@ void GameCharacter::greet() const{
 void GameCharacter::speak(std::string& response){
   std::cout << name << ": " << response << std::endl;
 }
-
-
-
