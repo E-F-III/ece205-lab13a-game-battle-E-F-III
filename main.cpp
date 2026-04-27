@@ -215,11 +215,12 @@ int main()
     cout << "Enter the number of player characters (Max 4): ";
     cin >> numPlayers;
 
-    while (!(cin >> numPlayers) || numPlayers < 1 || numPlayers > 4)
+    while (numPlayers < 1 || numPlayers > 4)
     {
         cout << "Invalid! Enter a number between 1 and 4: ";
         cin.clear();
         cin.ignore(1000, '\n');
+        cin >> numPlayers;
     }
 
     for (int i = 0; i < numPlayers; i++)
@@ -233,21 +234,17 @@ int main()
     cout << "Enter the number of enemy characters (Max 4): ";
     cin >> numEnemies;
 
-    while (!(cin >> numEnemies) || numEnemies < 1 || numEnemies > 4)
+    while (numEnemies < 1 || numEnemies > 4)
     {
         cout << "Invalid! Enter a number between 1 and 4: ";
         cin.clear();
         cin.ignore(1000, '\n');
+        cin >> numEnemies;
     }
 
     for (int i = 0; i < numEnemies; i++)
     {
-        enemies.push_back(createCharacter("Enemy " + to_string(i + 1)));
-    }
-
-    for (int i = 0; i < numEnemies; i++)
-    {
-        enemies.push_back(createCharacter("Enemy " + to_string(i + 1)));
+        enemies.push_back(createNPC("Enemy " + to_string(i + 1)));
     }
 
     while (partyAlive(players) && partyAlive(enemies)) {
