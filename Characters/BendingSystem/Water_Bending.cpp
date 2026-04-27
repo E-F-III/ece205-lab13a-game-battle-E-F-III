@@ -18,6 +18,7 @@ WaterBending::WaterBending() {
 // Healing Waters: a soothing wave of water that can heal allies
 void WaterBending::healingWaters(FighterCharacter& character, FighterCharacter& target) {
     // Implementation of healing logic here (modified to interact with passed player ref)
+    cout << character.getName() << " uses Healing Waters on " << target.getName() << "!" << endl;
     cout << "\nHealing Waters activates!" << endl;
     
     // Calculate healing: Diceroll between 5 and 10 for healing amount
@@ -33,6 +34,7 @@ void WaterBending::healingWaters(FighterCharacter& character, FighterCharacter& 
 void WaterBending::waterWhip(FighterCharacter& character, FighterCharacter& target) {
     // Implementation of damage logic here (modified to interact with passed player ref)
     int targetHealth = target.getHealth();
+    cout << character.getName() << " uses Water Whip on " << target.getName() << "!" << endl;
     cout << "\nWater Whip hits!" << endl;
     
     // Calculate damage: Medium range for whip attack
@@ -47,6 +49,7 @@ void WaterBending::waterWhip(FighterCharacter& character, FighterCharacter& targ
 // Ice Barrier: creates a solid barrier of ice that can block attacks and protect allies
 void WaterBending::iceBarrier(FighterCharacter& character, FighterCharacter& target) {
     // Implementation of defense logic here (modified to protect passed player ref)
+    cout << character.getName() << " uses Ice Barrier to protect " << target.getName() << "!" << endl;
     cout << "\nIce Barrier activates!" << endl;
     // In this simple game, ice barrier prevents immediate damage
     target.setHealth(target.getHealth()); 

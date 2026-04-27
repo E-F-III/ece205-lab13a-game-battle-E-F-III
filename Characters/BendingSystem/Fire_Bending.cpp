@@ -17,6 +17,8 @@ FireBending::FireBending() {
 
 // Fire Blast: a powerful blast of fire that can burn enemies
 void FireBending::fireBlast(FighterCharacter& character, FighterCharacter& target) {
+    
+    cout << character.getName() << " uses Fire Blast on " << target.getName() << "!" << endl;
     cout << "\nFire Blast hits!" << endl;
     
     // Calculate damage: Medium range for fire blast
@@ -31,6 +33,7 @@ void FireBending::fireBlast(FighterCharacter& character, FighterCharacter& targe
 // Fire Breath: the character exhales a cone of fire that can damage multiple enemies
 void FireBending::fireBreath(FighterCharacter& character, FighterCharacter& target) {
     // Area damage logic here (applied to current target for simplicity in this game)
+    cout << character.getName() << " uses Fire Breath on " << target.getName() << "!" << endl;
     cout << "\nFire Breath activates!" << endl;
     
     // Calculate area damage: Cone of fire deals moderate damage
@@ -43,6 +46,7 @@ void FireBending::fireBreath(FighterCharacter& character, FighterCharacter& targ
 // Lightning Strike: the character generates a bolt of lightning that can strike a single enemy with high damage
 void FireBending::lightningStrike(FighterCharacter& character, FighterCharacter& target) {
     // High damage logic here (modified to interact with passed player ref)
+    cout << character.getName() << " uses Lightning Strike on " << target.getName() << "!" << endl;
     cout << "\nLightning Strike hits!" << endl;
     
     // Calculate damage: High range for lightning attack
