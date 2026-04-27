@@ -184,7 +184,7 @@ void performTurn(FighterCharacter *attacker, vector<FighterCharacter *> &allies,
             attacker->performAction(*enemies[targetIdx]);
             break;
         case 1:
-            cout << "Choose an ally to support (not implemented yet, so this will just skip the turn):\n";
+            cout << "Choose an ally to support:\n";
             for (size_t i = 0; i < allies.size(); i++)
             {
                 cout << i << ": " << allies[i]->getName() << " (Health: " << allies[i]->getHealth() << ")\n";
@@ -196,7 +196,7 @@ void performTurn(FighterCharacter *attacker, vector<FighterCharacter *> &allies,
                 cin.ignore(1000, '\n');
             }
             // Future support action logic can be implemented here
-            cout << "Support actions not implemented yet. Turn skipped.\n";
+            attacker->performAction(*allies[targetIdx]);
             break;
         }
     }

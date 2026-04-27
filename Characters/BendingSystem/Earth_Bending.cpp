@@ -38,6 +38,7 @@ void EarthBending::rockShield(FighterCharacter& character, FighterCharacter& tar
 
     cout << character.getName() << " uses Rock Shield to protect " << target.getName() << "!" << endl;
     cout << "\nRock Shield activates!" << endl;
+    cout << "Shield logic not fully implemented yet, but it will block the next incoming attack." << endl;
     // In this simple game, shielding prevents immediate damage
     target.setHealth(target.getHealth()); 
 }

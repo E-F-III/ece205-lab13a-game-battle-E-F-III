@@ -51,6 +51,7 @@ void WaterBending::iceBarrier(FighterCharacter& character, FighterCharacter& tar
     // Implementation of defense logic here (modified to protect passed player ref)
     cout << character.getName() << " uses Ice Barrier to protect " << target.getName() << "!" << endl;
     cout << "\nIce Barrier activates!" << endl;
+    cout << "Shield logic not fully implemented yet, but it will block the next incoming attack." << endl;
     // In this simple game, ice barrier prevents immediate damage
     target.setHealth(target.getHealth()); 
 }

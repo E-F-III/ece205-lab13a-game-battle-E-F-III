@@ -39,6 +39,7 @@ void AirBending::airShield(FighterCharacter& character,FighterCharacter& target)
     cout << character.getName() << " creates an Air Shield! A swirling barrier of wind protects them from incoming attacks." << endl;
     // Implement defense logic here
     cout << "\nAir Shield activates!" << "Protects" << target.getName() << endl;
+    cout << "Shield logic not fully implemented yet, but it will block the next incoming attack." << endl;
     // Blocks all damage
     // Below is stubbed out will implement shields later. 
     // character.setHealth(character.getHealth());
